@@ -1,4 +1,4 @@
-\documentclass[titlepage, letterpaper, twoside, 10.5pt]{article}
+\documentclass[titlepage, letterpaper, 11pt]{article}
 \usepackage[letterpaper, margin=1.25in]{geometry}
 \usepackage{graphicx}
 \begin{document}
@@ -10,6 +10,14 @@ Team Member: Francois Nyamsi}
 Report Submission Date: February 8, 2015}
 \maketitle
 
+\clearpage
+\mbox{}
+\thispagestyle{empty}
+\clearpage
+\setcounter{page}{1}
+
+\tableofcontents
+
 \section{Objective}
 
 To compare the operation of common-emitter and common-base tuned
@@ -17,7 +25,7 @@ amplifier stages, and to design and characterize a multi-stage,
 high-gain IF amplifier for 10 MHz operation with 50$\Omega$ input and
 output impedances.
 
-\newpage
+\clearpage
 \section{Principles of Operation}
 
 Tuned amplifiers are critical for electronic communications because
@@ -49,14 +57,14 @@ Each configuration has its tradeoffs. The common-base (CB) configuration is
 a good current buffer, with $A_{i}\approx1$ and low input impedance.
 The common-emitter (CE) configuration offers the best overall power gain,
 but $A_{v}$ and $A_{i}$ may vary with loadings. The common-collector
-configuration, or emitter-follower, is a good voltage buffer 
+configuration is a good voltage buffer 
 ($A_{v}\approx1$) with low output impedance.
 
 The three configurations can be cascaded together to gain the benefits
-of each and mask their deficiencies. If cascaded in the order
-shown in figure \ref{BJTforwardBiasConfigurations}, from left-to-right,
-the resulting 3-stage broadband amplifier would have low input
-impedance, good power gain, and minimal output impedance.
+of each. If cascaded in the order shown in figure 
+\ref{BJTforwardBiasConfigurations}, from left-to-right, the resulting
+3-stage broadband amplifier would have low input impedance, good power
+gain, and minimal output impedance.
 
 A slight modification to the CE and CB configurations in figure
 \ref{BJTforwardBiasConfigurations} can apply a filter to the broadband
@@ -70,14 +78,13 @@ resistance $R_{C}$. As a result, the voltage gain for these
 configurations is determined primarily by how difficult it is for
 the collector current to reach ground; $A_{v}\propto R_{C}||R_{L}$.
 
-The designer can take advantage of the collector current's obstinance
+One can take advantage of the collector current's obstinance
 by replacing $R_{C}$ with an impedance that varies with frequency.
-Using an inductor and a capacitor in parallel would provide shorts
-to ground for DC currents and very high frequency currents. Parallel
-LC circuits also have a resonance frequency at which their net 
-impedance approaches infinity because power simply oscillates between
-the two.
+Using an inductor and a capacitor in parallel provides a short circuit
+to ground for both DC and high frequency currents. Additionally, at the
+LC circuit's resonant frequency, the net impedance $\rightarrow \infty$
+due to power oscillating between the two.
 \footnote{For this reason, an $L||C$ circuit is called a tank circuit.}
-The result is that the amplifier gain will be very high at resonance,
-when impedance is high, but will drop quickly for other frequencies.
+The result is a narrow bandpass filter at the resonant frequency, 
+where $Z_{C}\rightarrow \infty$.
 \end{document}
