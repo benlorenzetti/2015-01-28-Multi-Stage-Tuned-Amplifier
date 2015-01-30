@@ -1,2 +1,8 @@
 \contentsline {section}{\numberline {1}Objective}{1}
 \contentsline {section}{\numberline {2}Principles of Operation}{2}
+\contentsline {section}{\numberline {3}Theory}{3}
+\contentsline {subsection}{\numberline {3.1}Common-Base Broadband Amplifier}{3}
+\contentsline {section}{\numberline {4}Design and Simulation}{4}
+\contentsline {subsection}{\numberline {4.1}Specifications}{4}
+\contentsline {subsection}{\numberline {4.2}Tank Circuits}{4}
+\contentsline {subsection}{\numberline {4.3}Common-Base Stage}{4}

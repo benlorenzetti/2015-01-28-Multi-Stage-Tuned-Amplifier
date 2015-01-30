@@ -1,6 +1,7 @@
 \documentclass[titlepage, letterpaper, 11pt]{article}
 \usepackage[letterpaper, margin=1.25in]{geometry}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \begin{document}
 
 \title{Multi-Stage Tuned Amplifier}
@@ -87,4 +88,126 @@ due to power oscillating between the two.
 \footnote{For this reason, an $L||C$ circuit is called a tank circuit.}
 The result is a narrow bandpass filter at the resonant frequency, 
 where $Z_{C}\rightarrow \infty$.
+
+\section{Theory}
+
+\subsection{Common-Base Broadband Amplifier}
+
+The basic circuit for an single stage, common-base (CB) amplifier is
+shown in figure \ref{commonBaseAmplifier}. The base terminal is
+grounded and the input signal passes through the BJT from emitter
+to collector. In this configuration, the BJT acts like a current
+buffer, where the input current is repeated at the output regardless
+of the load. 
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]
+		{figures/commonBaseAmplifier.png}
+	\caption{
+		Basic circuit for a common-base broadband amplifier
+		(left), its DC large signal (middle) equivalent, and
+		AC small signal equivalent (right).
+	}
+	\label{commonBaseAmplifier}
+\end{figure}
+
+Two DC power rails are needed to bias the BJT in forward-active mode.
+A positive supply holds the collector reverse biased
+relative to the base which, at ground, is forward biased relative
+to the negative supplied emitter. Quiescent point analysis of the
+common-base is easy because the voltage is pinned at every node.
+
+\begin{equation}
+I_{EQ}=\frac{-V_{BE(on)}-V_{EE}}{R_{E}+R_{EX}}
+\end{equation}
+
+\begin{equation}
+r_{\pi}=\frac{V_{th}}{I_{BQ}}
+=\frac{V_{th}(\beta+1)(R_{E}+R_{EX})}{-V_{BE(on)}-V_{EE}}
+\label{commonBaseRpi}
+\end{equation}
+
+\begin{equation}
+g_{m}=\frac{\beta}{r_{\pi}}
+=\frac{\alpha(-V_{BE(on)}-V_{EE})}{V_{th}(R_{E}+R_{EX})}
+\end{equation}
+
+The hybrid-$\pi$ model for small signal AC modeling is shown in the
+right pane of figure \ref{commonBaseAmplifier}. Applying Kirchoff's
+current law at node E can be used to find the input resistance.
+
+\begin{equation*}
+\textrm{KCL @ E:}\qquad
+i_{S}-\frac{v_{s}}{r_{\pi}}-\frac{v_{s}}{R_{EX}}-g_{m}v_{s}=0
+\end{equation*}
+
+\begin{equation*}
+i_{s}=v_{s} \left[ \frac{1}{R_{\pi}}+\frac{1}{R_{EX}}+g_{m} \right]
+\end{equation*}
+
+\begin{equation*}
+i_{s}=v_{s} \left[
+\frac{R_{EX}+r_{\pi}+g_{m}r_{\pi}R_{EX}}
+{r_{\pi}R_{EX}} \right]
+\end{equation*}
+
+\begin{equation*}
+\frac{v_{s}}{i_{s}}
+=\frac{r_{\pi}R_{EX}}{R_{EX}+r_{\pi}+g_{m}r_{\pi}R_{EX}}
+\end{equation*}
+
+\begin{equation}
+R_{in}=\frac{R_{EX}}{1+\frac{(\beta+1)R_{EX}}{r_{\pi}}}
+\label{commonBaseRin}
+\end{equation}
+
+Applying KCL at the collector can be used to calculate the voltage
+gain of a single common-base stage.
+
+\begin{equation*}
+-g_{m}v_{s}+\frac{v_{o}}{R_{L}}+\frac{v_{o}}{R_{C}}=0
+\end{equation*}
+
+\begin{equation*}
+v_{o}\left[\frac{R_{L}+R_{C}}{R_{L}R_{C}}\right]=g_{m}v_{s}
+\end{equation*}
+
+\begin{equation}
+A_{v}=\frac{g_{m}R_{L}R_{C}}{R_{L}+R_{C}}
+\end{equation}
+
+\section{Design and Simulation}
+
+\subsection{Specifications}
+
+\subsection{Tank Circuits}
+
+\subsection{Common-Base Stage}
+
+The first stage must be a common-base amplifier in order to achieve
+low input resistance. The two resistors $R_{EX}$ and $R_{E1}$ must be
+chosen to achieve desirable input resistance and voltage gain.
+
+(circuit diagram for common-base stage here.)
+
+It is clear that $R_{EX}$ is strongly related to $R_{in}$ from
+equation \ref{commonBaseRin}. Substituting equation
+\ref{commonBaseRpi} for $r_{\pi}$ into equation \ref{commonBaseRin}
+yields
+
+\begin{equation*}
+R_{in}=\frac{R_{EX}}
+{1+R_{EX}\left(\frac{-V_{BE(on)}-V_{EE}}{V_{th}}\right)/(R_{E1}+R_{EX})}
+\end{equation*}
+
+Using the specified value for $V_{EE}$, the standard $0.7V$ for
+$V_{BE(on)}$, and the assumption that $R_{EX}<<R_{E1}$, then
+
+\begin{equation}
+R_{in}\approx\frac{R_{EX}}{1+\frac{436R_{EX}}{R_{E1}}}
+\end{equation}
+
+But should be the value of $R_{E1}$?
+
 \end{document}
