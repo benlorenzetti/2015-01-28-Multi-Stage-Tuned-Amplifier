@@ -100,6 +100,8 @@ to collector. In this configuration, the BJT acts like a current
 buffer, where the input current is repeated at the output regardless
 of the load. 
 
+GET RID OF REX NONSENSE!
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=\textwidth]
@@ -119,18 +121,18 @@ to the negative supplied emitter. Quiescent point analysis of the
 common-base is easy because the voltage is pinned at every node.
 
 \begin{equation}
-I_{EQ}=\frac{-V_{BE(on)}-V_{EE}}{R_{E}+R_{EX}}
+I_{EQ}=\frac{-V_{BE(on)}-V_{EE}}{R_{E}}
 \end{equation}
 
 \begin{equation}
 r_{\pi}=\frac{V_{th}}{I_{BQ}}
-=\frac{V_{th}(\beta+1)(R_{E}+R_{EX})}{-V_{BE(on)}-V_{EE}}
+=\frac{V_{th}(\beta+1)R_{E}}{-V_{BE(on)}-V_{EE}}
 \label{commonBaseRpi}
 \end{equation}
 
 \begin{equation}
 g_{m}=\frac{\beta}{r_{\pi}}
-=\frac{\alpha(-V_{BE(on)}-V_{EE})}{V_{th}(R_{E}+R_{EX})}
+=\frac{\alpha(-V_{BE(on)}-V_{EE})}{V_{th}R_{E}}
 \end{equation}
 
 The hybrid-$\pi$ model for small signal AC modeling is shown in the
@@ -139,26 +141,26 @@ current law at node E can be used to find the input resistance.
 
 \begin{equation*}
 \textrm{KCL @ E:}\qquad
-i_{S}-\frac{v_{s}}{r_{\pi}}-\frac{v_{s}}{R_{EX}}-g_{m}v_{s}=0
+i_{S}-\frac{v_{s}}{r_{\pi}}-\frac{v_{s}}{R_{E}}-g_{m}v_{s}=0
 \end{equation*}
 
 \begin{equation*}
-i_{s}=v_{s} \left[ \frac{1}{R_{\pi}}+\frac{1}{R_{EX}}+g_{m} \right]
+i_{s}=v_{s} \left[ \frac{1}{R_{\pi}}+\frac{1}{R_{E}}+g_{m} \right]
 \end{equation*}
 
 \begin{equation*}
 i_{s}=v_{s} \left[
-\frac{R_{EX}+r_{\pi}+g_{m}r_{\pi}R_{EX}}
-{r_{\pi}R_{EX}} \right]
+\frac{R_{E}+r_{\pi}+g_{m}r_{\pi}R_{E}}
+{r_{\pi}R_{E}} \right]
 \end{equation*}
 
 \begin{equation*}
 \frac{v_{s}}{i_{s}}
-=\frac{r_{\pi}R_{EX}}{R_{EX}+r_{\pi}+g_{m}r_{\pi}R_{EX}}
+=\frac{r_{\pi}R_{E}}{R_{E}+r_{\pi}+g_{m}r_{\pi}R_{E}}
 \end{equation*}
 
 \begin{equation}
-R_{in}=\frac{R_{EX}}{1+\frac{(\beta+1)R_{EX}}{r_{\pi}}}
+R_{in}=\frac{r_{\pi}}{\beta+1+\frac{r_{\pi}}{r_{E}}}
 \label{commonBaseRin}
 \end{equation}
 
@@ -177,6 +179,23 @@ v_{o}\left[\frac{R_{L}+R_{C}}{R_{L}R_{C}}\right]=g_{m}v_{s}
 A_{v}=\frac{g_{m}R_{L}R_{C}}{R_{L}+R_{C}}
 \end{equation}
 
+\subsection{Coupling Capacitors}
+
+The coupling capacitors, labeled $C_{Cx}$, isolate each stage from
+direct currents but provide a low impedance path for the AC signal.
+Taken together, they should form a sharp high-pass filter with its
+corner frequency below 1000 Hz. The 3dB corner occurs when half the
+signal power is dissipated in the capacitor and half in the stage's
+input. This occurs when $Z_{Cc}=Z_{in}$.
+
+\begin{equation*}
+\frac{1}{|j\omega C|}=R_{in}
+\end{equation*}
+
+\begin{equation}
+C_{C}\geq \frac{159.15\,\mu F*\Omega}{R_{in}}
+\end{equation}
+
 \section{Design and Simulation}
 
 \subsection{Specifications}
@@ -186,28 +205,27 @@ A_{v}=\frac{g_{m}R_{L}R_{C}}{R_{L}+R_{C}}
 \subsection{Common-Base Stage}
 
 The first stage must be a common-base amplifier in order to achieve
-low input resistance. The two resistors $R_{EX}$ and $R_{E1}$ must be
+low input resistance. The emitter resitance must be
 chosen to achieve desirable input resistance and voltage gain.
 
-(circuit diagram for common-base stage here.)
-
-It is clear that $R_{EX}$ is strongly related to $R_{in}$ from
+It is clear that $R_{in}$ is strongly related to $r_{\pi}$ from
 equation \ref{commonBaseRin}. Substituting equation
 \ref{commonBaseRpi} for $r_{\pi}$ into equation \ref{commonBaseRin}
 yields
 
 \begin{equation*}
-R_{in}=\frac{R_{EX}}
-{1+R_{EX}\left(\frac{-V_{BE(on)}-V_{EE}}{V_{th}}\right)/(R_{E1}+R_{EX})}
+R_{in}=\frac{-V_{th}R_{E}}{V_{BE(on)}+V_{EE}}
+\qquad\textrm{or}\qquad
+\left(R_{E}=\frac{R_{in}(-V_{BE(on)}-V_{EE})}{V_{th}}\right)
 \end{equation*}
 
-Using the specified value for $V_{EE}$, the standard $0.7V$ for
-$V_{BE(on)}$, and the assumption that $R_{EX}<<R_{E1}$, then
+Using the specified value for $V_{EE}$ and $R_{in}$, and typical
+values for $V_{th}$ and $V_{BE(on)}$, the emitter resitance should be
 
-\begin{equation}
-R_{in}\approx\frac{R_{EX}}{1+\frac{436R_{EX}}{R_{E1}}}
-\end{equation}
+\begin{equation*}
+R_{in}=\frac{50\Omega(-0.7V+12V)}{0.0259V}=21.8k\Omega
+\end{equation*}
 
-But should be the value of $R_{E1}$?
+
 
 \end{document}
