@@ -2,6 +2,8 @@
 \usepackage[letterpaper, margin=1.25in]{geometry}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
 \begin{document}
 
 \title{Multi-Stage Tuned Amplifier}
@@ -100,8 +102,6 @@ to collector. In this configuration, the BJT acts like a current
 buffer, where the input current is repeated at the output regardless
 of the load. 
 
-GET RID OF REX NONSENSE!
-
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=\textwidth]
@@ -196,11 +196,85 @@ input. This occurs when $Z_{Cc}=Z_{in}$.
 C_{C}\geq \frac{159.15\,\mu F*\Omega}{R_{in}}
 \end{equation}
 
+\subsection{Tank Circuits}
+
+No inductor is ideal. The quality of an inductor is defined by
+the ratio of the impedance and resistance of the discrete element.
+\begin{equation*}
+Q=\frac{X_{L}}{R_{S}}\qquad\textrm{where}\qquad Z_{L}=R_{S}+jX_{L}
+\end{equation*}
+
+The series resistance $R_{S}$ is due to the resistivity of the
+wire and the length used to wrap the coil. Furthermore, the
+impedance $X_{L}$ is not 100\% inductive; there is a distributed
+capacitance $C_{D}$ between the surfaces of the tightly wrapped
+wire. The circuit model for an inductor is shown in the left pane of
+figure \ref{tankCircuit}.
+
+As a consequence of the distributed capacitance, every inductor
+will have a self resonant frequency $f_{0}$, at which the energy
+entering the tank will oscillate between the inductor and capacitor
+instead of passing through.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]
+		{figures/tankCircuit.png}
+	\caption{
+		Circuit model for a non-ideal inductor (left) and its
+		parallel equivalent circuit (right).
+	}
+	\label{tankCircuit}
+\end{figure}
+
+Sometimes the parallel equivalent of the imperfect L model is more
+convenient. If the quality is greater than 5 the conversion is easy:
+\begin{equation}
+Q=\frac{X_{L}}{R_{S}}=\frac{R_{P}}{X_{L}}
+\end{equation}
+
+The self resonance frequency occurs when the net impedance is
+greatest. Applying Kirchoff's current law to the parallel model...
+
+\begin{equation*}
+|I_{in}|=\frac{|V_{in}|}
+{\sqrt{(j\omega L+1/j\omega C)^{2}+R_{P}^{2}}}
+\end{equation*}
+
+\begin{equation}
+|Z_{L}|=\sqrt{R_{P}^{2}-\left(\omega L-\frac{1}{\omega C}\right)^{2}}
+\end{equation}
+
+One can see that $Z_{L}$ will reach its peak when:
+\begin{equation*}
+\left(\omega L-\frac{1}{\omega C}\right)=0
+\end{equation*}
+
+Therefore, the maximum impedance of a tank circuit is:
+\begin{equation}
+|Z_{L}|_{max}=R_{P}\qquad\textrm{when}\qquad
+f_{0}=\frac{1}{2\pi\sqrt{LC}}
+\end{equation}
+
 \section{Design and Simulation}
 
 \subsection{Specifications}
 
 \subsection{Tank Circuits}
+
+Two inductors were wound with ~22 turns. Their inductance and quality
+were measured using a Hewlett-Packard 4342A Q Meter. An appropriate
+discrete capacitor and trimming capacitor were selected for both to
+obtain a tank circuit with resonance at ~10 MHz. The fixed capacitors
+were soldered to their inductors in parallel.
+
+
+
+The soldered LC circuit were breadboarded in parallel with a trimming
+capacitor and tuned. Then, the breadboarded tank circuit was measured
+for net capacitance, resonance frequency, and quality using the HP
+Q Meter. The method for this measurement is attached in appendix
+\ref{HP4342Ainstructions}.
 
 \subsection{Common-Base Stage}
 
@@ -226,6 +300,18 @@ values for $V_{th}$ and $V_{BE(on)}$, the emitter resitance should be
 R_{in}=\frac{50\Omega(-0.7V+12V)}{0.0259V}=21.8k\Omega
 \end{equation*}
 
+\section{Appendices}
+
+\subsection{HP 4342A Q Meter}
+
+The following 3 pages are taken from the HP 4342A Q Meter Operating
+and Service Manual, pages 35-37.
+
+\includegraphics[width=1\textwidth]{qMeter/page35}
+
+\includegraphics[width=1\textwidth]{qMeter/page36}
+
+\includegraphics[width=1\textwidth]{qMeter/page37}
 
 
 \end{document}
