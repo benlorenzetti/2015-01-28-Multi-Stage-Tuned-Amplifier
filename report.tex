@@ -268,19 +268,45 @@ discrete capacitor and trimming capacitor were selected for both to
 obtain a tank circuit with resonance at ~10 MHz. The fixed capacitors
 were soldered to their inductors in parallel.
 
-
-
 The soldered LC circuit were breadboarded in parallel with a trimming
 capacitor and tuned. Then, the breadboarded tank circuit was measured
 for net capacitance, resonance frequency, and quality using the HP
 Q Meter. The method for this measurement is attached in appendix
-\ref{HP4342Ainstructions}.
+\ref{qMeter}.
+
+The results of these measurements are shown in table
+\ref{qualityMeasurements}
+
+\begin{table}[ht]
+\caption{Quality \& Other Measurements of Tank Circuits}
+\begin{tabular}{| c | c | c | c | c | c | c | c | c |}
+\hline
+	&L		&$Q_{L}$	& $C_{fixed}$	& $C_{trim}$	& $C_{d}$	& $f_{0}$	& $Q_{tank}$	& $R_{p}$ \\
+	&(meas.)	&(meas.)	&(nominal val.)	&(datasheet)	&(meas.)	&(meas.)	&(meas.)	&(calc.)\\ 
+\hline\hline
+1	& 4.2$\mu H$	& 90		&33 $pF$	&5-35 $pF$	&55 $pF$	&13.3 $MHz$	&85.5		& 2.18 $k\Omega$\\
+2	&		&		&		&		&		&		&		&\\
+\hline
+\end{tabular}
+\label{qualityMeasurements}
+\end{table}
 
 \subsection{Common-Base Stage}
 
 The first stage must be a common-base amplifier in order to achieve
 low input resistance. The emitter resitance must be
 chosen to achieve desirable input resistance and voltage gain.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.25\textwidth]
+		{figures/commonBaseStage}
+	\caption{
+		Common-base stage with SPICE netlist labels.
+	}
+	\label{commonBaseStage}
+\end{figure}
+
 
 It is clear that $R_{in}$ is strongly related to $r_{\pi}$ from
 equation \ref{commonBaseRin}. Substituting equation
@@ -297,12 +323,13 @@ Using the specified value for $V_{EE}$ and $R_{in}$, and typical
 values for $V_{th}$ and $V_{BE(on)}$, the emitter resitance should be
 
 \begin{equation*}
-R_{in}=\frac{50\Omega(-0.7V+12V)}{0.0259V}=21.8k\Omega
+R_{E}=\frac{50\Omega(-0.7V+12V)}{0.0259V}=21.8k\Omega
 \end{equation*}
 
 \section{Appendices}
 
 \subsection{HP 4342A Q Meter}
+\label{qMeter}
 
 The following 3 pages are taken from the HP 4342A Q Meter Operating
 and Service Manual, pages 35-37.
