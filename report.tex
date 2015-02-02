@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{tablefootnote}
 \begin{document}
 
 \title{Multi-Stage Tuned Amplifier}
@@ -122,6 +123,7 @@ common-base is easy because the voltage is pinned at every node.
 
 \begin{equation}
 I_{EQ}=\frac{-V_{BE(on)}-V_{EE}}{R_{E}}
+\label{commonBaseIeq}
 \end{equation}
 
 \begin{equation}
@@ -194,6 +196,7 @@ input. This occurs when $Z_{Cc}=Z_{in}$.
 
 \begin{equation}
 C_{C}\geq \frac{159.15\,\mu F*\Omega}{R_{in}}
+\label{couplingCapacitors}
 \end{equation}
 
 \subsection{Tank Circuits}
@@ -281,11 +284,11 @@ The results of these measurements are shown in table
 \caption{Quality \& Other Measurements of Tank Circuits}
 \begin{tabular}{| c | c | c | c | c | c | c | c | c |}
 \hline
-	&L		&$Q_{L}$	& $C_{fixed}$	& $C_{trim}$	& $C_{d}$	& $f_{0}$	& $Q_{tank}$	& $R_{p}$ \\
-	&(meas.)	&(meas.)	&(nominal val.)	&(datasheet)	&(meas.)	&(meas.)	&(meas.)	&(calc.)\\ 
+	&L		&$Q_{L}$	& $C_{fixed}$	& $C_{trim}$	& $C_{d}$	& $f_{0}$	& $Q_{tank}\tablefootnote{measured at 10MHz}$	& $R_{p}$ \\
+	&(meas.)	&(meas.)	&(nominal val.)	&(datasheet)	&(meas.)	&(meas.)	&(meas.)					&(calc.)\\ 
 \hline\hline
-1	& 4.2$\mu H$	& 90		&33 $pF$	&5-35 $pF$	&55 $pF$	&13.3 $MHz$	&85.5		& 2.18 $k\Omega$\\
-2	&		&		&		&		&		&		&		&\\
+1	& 4.2$\mu H$	& 90		&33 $pF$	&5-35 $pF$	&55 $pF$	&13.3 $MHz$	&85.5						& 2.18 $k\Omega$\\
+2	&		&		&		&		&		&		&						&\\
 \hline
 \end{tabular}
 \label{qualityMeasurements}
@@ -326,6 +329,67 @@ values for $V_{th}$ and $V_{BE(on)}$, the emitter resitance should be
 R_{E}=\frac{50\Omega(-0.7V+12V)}{0.0259V}=21.8k\Omega
 \end{equation*}
 
+With $R_{E}$, the quiescent current can be calculated with equation
+\ref{commonBaseIeq}; $I_{EQ}=0.52mA$.
+
+The first BJT was characterized and a DC load line drawn. Because all
+of the node voltages are pinned, the load line is vertical; $V_{CE}$
+is independent of $I_{EQ}$. It was found that
+
+\begin{equation*}
+\beta_{Q1}=176\qquad\qquad V_{AQ1}=452V
+\end{equation*}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]
+		{measurements/q1Characteristics}
+	\caption{
+		Q1 Current-Voltage Characteristics and DC Load Line
+	}
+	\label{q1Characteristics}
+\end{figure}
+
+From equation \ref{couplingCapacitors} and using $R_{in}=50\Omega$,
+
+\begin{equation*}
+C_{C1}\geq 3.183pF
+\end{equation*}
+
+At this point, all of the discrete components for the CB stage have
+been determined. A SPICE simulation was performed to check the
+performance of the stage. For a load value, the input resistance of
+the first common emitter stage was used. The netlist used is included
+in appendix \ref{CBstageNetlist} and the results are shown in figure
+\ref{CBstageMagnitudePlot}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]
+		{ngspice/CBstage.eps}
+	\caption{
+		Magnitude Gain of Common-Base Stage, in dB
+	}
+	\label{CBstageMagnitudePlot}
+\end{figure}
+
+\subsection{Common-Emitter Stage}
+
+The common-emitter configuration provides the highest overall power
+gain, compared to CB and CC. This makes it ideal for the middle
+stages. A single CE stage is shown in figure 
+\ref{commonEmitterStage}.
+
+The second BJT was characterized on the Tektronix Curve Tracer
+using a range of 20V and 2mA (the maximum swing would actually be
+24V). The i-v characteristics and the DC load line are shown in
+figure \ref{q2Characteristics}.
+
+The MATLAB analysis of $A_{v}(I_{EQ})$ in section
+\ref{gainVSquiescentCurrent} showed that the gain of a CE amplifier
+grows proportionally to the quiescent current. Based on this, a
+relatively large quiescent current was chosen, ????.
+
 \section{Appendices}
 
 \subsection{HP 4342A Q Meter}
@@ -339,6 +403,49 @@ and Service Manual, pages 35-37.
 \includegraphics[width=1\textwidth]{qMeter/page36}
 
 \includegraphics[width=1\textwidth]{qMeter/page37}
+
+\subsection{Common-Base SPICE Simulation}
+\label{CBstageNetlist}
+
+The following netlist was used to simulate the CB stage. The labeling
+in the netlist corresponds to the circuit in figure
+\ref{commonBaseStage}.
+
+\begin{verbatim}
+*** CBstage.cir ***
+* Nodes:
+* gnd, cc (+12V), ee (-12V), s, in, e1, c1, out
+
+Vcc cc gnd dc 12V ac 0V
+Vee ee gnd dc -12V ac 0V
+Vs s gnd dc 0V ac 10mV
+Rs in s 50
+Cc1 in e1 3.183uF
+Re1 e1 ee 21.8k
+Q1 c1 gnd e1 model1
+L1 c1 cc 4.2uH
+Cd1 c1 cc 55pF
+Rp1 c1 cc 2.18k
+Cc2 c1 out 3.183uF
+Rld out gnd 9999k
+
+* .model <name> <type> (par1=value1 par2=value2 ...)
+* VAF = forward Early voltage
+* BF = forward beta; forward common-emitter gain
+* CJE = base-emitter zero-bias junction capacitance
+* CJC = base-collector zero-bias junction capacitance
+* TS = transport saturation current
+* NF = forward mode ideality factor
+
+.model model1 npn (BF=176 CJC=20pf CJE=20pf IS=1E-16 VAF=452V NF=1)
+
+.control
+set filetype=ascii
+ac dec 10 1Hz 1GHz
+plot db(v(out)/v(in))
+plot ph(v(out))-ph(v(in))
+write CBstage.txt db(v(output)/v(input)) ph(v(output))-ph(v(input))
+\end{verbatim}
 
 
 \end{document}
