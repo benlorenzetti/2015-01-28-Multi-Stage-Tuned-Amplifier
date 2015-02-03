@@ -94,6 +94,75 @@ where $Z_{C}\rightarrow \infty$.
 
 \section{Theory}
 
+\subsection{Tank Circuits}
+
+No inductor is ideal. The quality of an inductor is defined by
+the ratio of the impedance and resistance of the discrete element.
+\begin{equation*}
+Q=\frac{X_{L}}{R_{S}}\qquad\textrm{where}\qquad Z_{L}=R_{S}+jX_{L}
+\end{equation*}
+
+The series resistance $R_{S}$ is due to the resistivity of the
+wire and the length used to wrap the coil. Furthermore, the
+impedance $X_{L}$ is not 100\% inductive; there is a distributed
+capacitance $C_{D}$ between the surfaces of the tightly wrapped
+wire. The circuit model for an inductor is shown in the left pane of
+figure \ref{tankCircuit}.
+
+As a consequence of the distributed capacitance, every inductor
+will have a self resonant frequency $f_{0}$, at which the energy
+entering the tank will oscillate between the inductor and capacitor
+instead of passing through.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]
+		{figures/tankCircuit.png}
+	\caption{
+		Circuit model for a non-ideal inductor (left) and its
+		parallel equivalent circuit (right).
+	}
+	\label{tankCircuit}
+\end{figure}
+
+Sometimes the parallel equivalent of the imperfect L model is more
+convenient. If the quality is greater than 5 the conversion is easy:
+\begin{equation}
+Q=\frac{X_{L}}{R_{S}}=\frac{R_{P}}{X_{L}}
+\end{equation}
+
+The self resonance frequency occurs when the net impedance is
+greatest. Applying Kirchoff's current law to the parallel model...
+
+\begin{equation*}
+|I_{in}|=\frac{|V_{in}|}
+{\sqrt{(j\omega L+1/j\omega C)^{2}+R_{P}^{2}}}
+\end{equation*}
+
+\begin{equation}
+|Z_{L}|=\sqrt{R_{P}^{2}-\left(\omega L-\frac{1}{\omega C}\right)^{2}}
+\end{equation}
+
+One can see that $Z_{L}$ will reach its peak when:
+\begin{equation*}
+\left(\omega L-\frac{1}{\omega C}\right)=0
+\label{resonantFrequencyEq}
+\end{equation*}
+
+Therefore, the maximum impedance of a tank circuit is:
+\begin{equation}
+|Z_{L}|_{max}=R_{P}\qquad\textrm{when}\qquad
+f_{0}=\frac{1}{2\pi\sqrt{LC}}
+\end{equation}
+
+More generally than non-ideal inductors; the resonant frequency,
+bandwidth, and quality of a parallel RLC circuit are related to 
+L, C, and R.
+\begin{equation}
+Q=\frac{\omega_{0}}{B}=\omega_{0}RC=\frac{R}{\omega_{0}L}
+\label{parallelRLCequation}
+\end{equation}
+
 \subsection{Common-Base Broadband Amplifier}
 
 The basic circuit for an single stage, common-base (CB) amplifier is
@@ -228,78 +297,26 @@ C_{C}\geq \frac{159.15\,\mu F*\Omega}{R_{in}}
 \label{couplingCapacitors}
 \end{equation}
 
-\subsection{Tank Circuits}
-
-No inductor is ideal. The quality of an inductor is defined by
-the ratio of the impedance and resistance of the discrete element.
-\begin{equation*}
-Q=\frac{X_{L}}{R_{S}}\qquad\textrm{where}\qquad Z_{L}=R_{S}+jX_{L}
-\end{equation*}
-
-The series resistance $R_{S}$ is due to the resistivity of the
-wire and the length used to wrap the coil. Furthermore, the
-impedance $X_{L}$ is not 100\% inductive; there is a distributed
-capacitance $C_{D}$ between the surfaces of the tightly wrapped
-wire. The circuit model for an inductor is shown in the left pane of
-figure \ref{tankCircuit}.
-
-As a consequence of the distributed capacitance, every inductor
-will have a self resonant frequency $f_{0}$, at which the energy
-entering the tank will oscillate between the inductor and capacitor
-instead of passing through.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.75\textwidth]
-		{figures/tankCircuit.png}
-	\caption{
-		Circuit model for a non-ideal inductor (left) and its
-		parallel equivalent circuit (right).
-	}
-	\label{tankCircuit}
-\end{figure}
-
-Sometimes the parallel equivalent of the imperfect L model is more
-convenient. If the quality is greater than 5 the conversion is easy:
-\begin{equation}
-Q=\frac{X_{L}}{R_{S}}=\frac{R_{P}}{X_{L}}
-\end{equation}
-
-The self resonance frequency occurs when the net impedance is
-greatest. Applying Kirchoff's current law to the parallel model...
-
-\begin{equation*}
-|I_{in}|=\frac{|V_{in}|}
-{\sqrt{(j\omega L+1/j\omega C)^{2}+R_{P}^{2}}}
-\end{equation*}
-
-\begin{equation}
-|Z_{L}|=\sqrt{R_{P}^{2}-\left(\omega L-\frac{1}{\omega C}\right)^{2}}
-\end{equation}
-
-One can see that $Z_{L}$ will reach its peak when:
-\begin{equation*}
-\left(\omega L-\frac{1}{\omega C}\right)=0
-\label{resonantFrequencyEq}
-\end{equation*}
-
-Therefore, the maximum impedance of a tank circuit is:
-\begin{equation}
-|Z_{L}|_{max}=R_{P}\qquad\textrm{when}\qquad
-f_{0}=\frac{1}{2\pi\sqrt{LC}}
-\end{equation}
-
-More generally than non-ideal inductors; the resonant frequency,
-bandwidth, and quality of a parallel RLC circuit are related to 
-L, C, and R.
-\begin{equation}
-Q=\frac{\omega_{0}}{B}=\omega_{0}RC=\frac{R}{\omega_{0}L}
-\label{parallelRLCequation}
-\end{equation}
-
 \section{Design and Simulation}
 
 \subsection{Specifications}
+
+The multi-stage amplifier must meet the following specifications in
+table \ref{labSpecs}.
+
+\begin{table}[ht]
+\centering
+\caption{Lab Specifications}
+\begin{tabular}{c | c}
+power supply			&$\pm 12V$	\\
+passband center frequency	&$10MHz$	\\
+bandwidth			&$300kHz$	\\
+input impedance			&$50\Omega$	\\
+ouptut impedance		&$50\Omega$	\\
+gain at center frequency	&$>60dB$	\\
+\end{tabular}
+\label{labSpecs}
+\end{table}
 
 \subsection{Tank Circuits}
 

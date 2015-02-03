@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.28)  3 FEB 2015 18:12
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.28)  3 FEB 2015 18:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -326,52 +326,52 @@ Package pdftex.def Info: figures/BJTforwardBiasConfigurations.png used on input
 (pdftex.def)             Requested size: 325.215pt x 111.49213pt.
  [2
 
- <./figures/BJTforwardBiasConfigurations.png>]
-<figures/commonBaseAmplifier.png, id=30, 518.1759pt x 162.8484pt>
+ <./figures/BJTforwardBiasConfigurations.png>] <figures/tankCircuit.png, id=30,
+ 405.6756pt x 132.0132pt>
+File: figures/tankCircuit.png Graphic file (type png)
+
+<use figures/tankCircuit.png>
+Package pdftex.def Info: figures/tankCircuit.png used on input line 120.
+(pdftex.def)             Requested size: 325.215pt x 105.83427pt.
+ [3 <./figures/tankCircuit.png (PNG copy)>]
+<figures/commonBaseAmplifier.png, id=35, 518.1759pt x 162.8484pt>
 File: figures/commonBaseAmplifier.png Graphic file (type png)
 
 <use figures/commonBaseAmplifier.png>
-Package pdftex.def Info: figures/commonBaseAmplifier.png used on input line 109
+Package pdftex.def Info: figures/commonBaseAmplifier.png used on input line 178
 .
 (pdftex.def)             Requested size: 433.62001pt x 136.27736pt.
- [3 <./figures/commonBaseAmplifier.png>]
-<figures/commonEmitterAmplifier.png, id=37, 230.14842pt x 188.77214pt>
+ [4 <./figures/commonBaseAmplifier.png>]
+<figures/commonEmitterAmplifier.png, id=41, 230.14842pt x 188.77214pt>
 File: figures/commonEmitterAmplifier.png Graphic file (type png)
 
 <use figures/commonEmitterAmplifier.png>
 Package pdftex.def Info: figures/commonEmitterAmplifier.png used on input line 
-194.
+263.
 (pdftex.def)             Requested size: 173.44534pt x 142.26717pt.
 
-<figures/commonEmitterEquivalentCircuits.png, id=38, 2019.545pt x 509.905pt>
+<figures/commonEmitterEquivalentCircuits.png, id=42, 2019.545pt x 509.905pt>
 File: figures/commonEmitterEquivalentCircuits.png Graphic file (type png)
 
 <use figures/commonEmitterEquivalentCircuits.png>
 Package pdftex.def Info: figures/commonEmitterEquivalentCircuits.png used on in
-put line 204.
+put line 273.
 (pdftex.def)             Requested size: 346.89732pt x 87.58524pt.
- [4 <./figures/commonEmitterAmplifier.png> <./figures/commonEmitterEquivalentCi
-rcuits.png>]
-<figures/tankCircuit.png, id=44, 405.6756pt x 132.0132pt>
-File: figures/tankCircuit.png Graphic file (type png)
-
-<use figures/tankCircuit.png>
-Package pdftex.def Info: figures/tankCircuit.png used on input line 254.
-(pdftex.def)             Requested size: 325.215pt x 105.83427pt.
- [5 <./figures/tankCircuit.png (PNG copy)>]
-<figures/commonBaseStage.png, id=49, 154.6578pt x 206.2104pt>
+ [5 <./figures/commonEmitterAmplifier.png>] [6 <./figures/commonEmitterEquivale
+ntCircuits.png>]
+<figures/commonBaseStage.png, id=52, 154.6578pt x 206.2104pt>
 File: figures/commonBaseStage.png Graphic file (type png)
 
 <use figures/commonBaseStage.png>
-Package pdftex.def Info: figures/commonBaseStage.png used on input line 351.
+Package pdftex.def Info: figures/commonBaseStage.png used on input line 368.
 (pdftex.def)             Requested size: 108.405pt x 144.53822pt.
- [6]
-<measurements/q1Characteristics.png, id=53, 471.6822pt x 429.2838pt>
+ [7 <./figures/commonBaseStage.png>]
+<measurements/q1Characteristics.png, id=57, 471.6822pt x 429.2838pt>
 File: measurements/q1Characteristics.png Graphic file (type png)
 
 <use measurements/q1Characteristics.png>
 Package pdftex.def Info: measurements/q1Characteristics.png used on input line 
-390.
+407.
 (pdftex.def)             Requested size: 260.17465pt x 236.7946pt.
 Package epstopdf Info: Source file: <ngspice/CBstage.eps>
 (epstopdf)                    date: 2015-02-03 12:40:49
@@ -381,76 +381,72 @@ Package epstopdf Info: Source file: <ngspice/CBstage.eps>
 (epstopdf)                    size: 6657 bytes
 (epstopdf)             Command: <repstopdf --outfile=ngspice/CBstage-eps-conver
 ted-to.pdf ngspice/CBstage.eps>
-(epstopdf)             \includegraphics on input line 413.
+(epstopdf)             \includegraphics on input line 430.
 Package epstopdf Info: Output file is already uptodate.
 
-<ngspice/CBstage-eps-converted-to.pdf, id=54, 560.0925pt x 560.0925pt>
+<ngspice/CBstage-eps-converted-to.pdf, id=58, 560.0925pt x 560.0925pt>
 File: ngspice/CBstage-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ngspice/CBstage-eps-converted-to.pdf>
 Package pdftex.def Info: ngspice/CBstage-eps-converted-to.pdf used on input lin
-e 413.
+e 430.
 (pdftex.def)             Requested size: 260.17465pt x 260.18393pt.
 
 
-LaTeX Warning: Reference `commonEmitterStage' on page 7 undefined on input line
- 425.
+LaTeX Warning: Reference `commonEmitterStage' on page 8 undefined on input line
+ 442.
 
-[7 <./figures/commonBaseStage.png>]
 
 LaTeX Warning: Reference `q2Characteristics' on page 8 undefined on input line 
-430.
+447.
 
 
 LaTeX Warning: Reference `gainVSquiescentCurrent' on page 8 undefined on input 
-line 433.
+line 450.
 
-<qMeter/page35.png, id=59, 1638.12pt x 2152.04pt>
+<qMeter/page35.png, id=59, 1638.12pt x 2152.04pt> [8 <./measurements/q1Characte
+ristics.png (PNG copy)>]
 File: qMeter/page35.png Graphic file (type png)
  <use qMeter/page35.png>
-Package pdftex.def Info: qMeter/page35.png used on input line 445.
+Package pdftex.def Info: qMeter/page35.png used on input line 462.
 (pdftex.def)             Requested size: 433.62001pt x 569.66399pt.
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 445--446
+Overfull \hbox (17.0pt too wide) in paragraph at lines 462--463
 [][] 
  []
 
-<qMeter/page36.png, id=60, 1638.12pt x 2152.04pt> [8 <./measurements/q1Characte
-ristics.png (PNG copy)>]
-Overfull \vbox (255.15291pt too high) has occurred while \output is active []
-
-
-[9 <./ngspice/CBstage-eps-converted-to.pdf> <./qMeter/page35.png>]
+<qMeter/page36.png, id=63, 1638.12pt x 2152.04pt> [9 <./ngspice/CBstage-eps-con
+verted-to.pdf>]
 File: qMeter/page36.png Graphic file (type png)
-
-<use qMeter/page36.png>
-Package pdftex.def Info: qMeter/page36.png used on input line 447.
+ <use qMeter/page36.png>
+Package pdftex.def Info: qMeter/page36.png used on input line 464.
 (pdftex.def)             Requested size: 433.62001pt x 569.66399pt.
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 447--448
+Overfull \hbox (17.0pt too wide) in paragraph at lines 464--465
 [][] 
  []
 
-<qMeter/page37.png, id=73, 1638.12pt x 2152.04pt>
+<qMeter/page37.png, id=72, 1638.12pt x 2152.04pt> [10 <./qMeter/page35.png>]
 File: qMeter/page37.png Graphic file (type png)
- <use qMeter/page37.png>
-Package pdftex.def Info: qMeter/page37.png used on input line 449.
+
+<use qMeter/page37.png>
+Package pdftex.def Info: qMeter/page37.png used on input line 466.
 (pdftex.def)             Requested size: 433.62001pt x 569.66399pt.
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 449--450
+Overfull \hbox (17.0pt too wide) in paragraph at lines 466--467
 [][] 
  []
 
-[10 <./qMeter/page36.png>] [11 <./qMeter/page37.png>] [12] (./report.aux)
+[11 <./qMeter/page36.png>] [12 <./qMeter/page37.png>] [13] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 4351 strings out of 493304
- 64858 string characters out of 6139871
- 142440 words of memory out of 5000000
- 7730 multiletter control sequences out of 15000+600000
+ 4352 strings out of 493304
+ 64868 string characters out of 6139871
+ 140448 words of memory out of 5000000
+ 7731 multiletter control sequences out of 15000+600000
  11241 words of font info for 41 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,9n,38p,789b,273s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -469,10 +465,10 @@ r6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (14 pages, 3576788 bytes).
+Output written on report.pdf (15 pages, 3577937 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
+ 141 PDF objects out of 1000 (max. 8388607)
+ 88 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
