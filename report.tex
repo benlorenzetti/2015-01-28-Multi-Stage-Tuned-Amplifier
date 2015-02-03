@@ -181,6 +181,35 @@ v_{o}\left[\frac{R_{L}+R_{C}}{R_{L}R_{C}}\right]=g_{m}v_{s}
 A_{v}=\frac{g_{m}R_{L}R_{C}}{R_{L}+R_{C}}
 \end{equation}
 
+\subsection{Common-Emitter Broadband Amplifier}
+
+The basic circuit for an single stage, common-emitter (CE)
+amplifier is shown in figure \ref{commonEmitterAmplifier}.
+The DC equivalent circuit is shown in the left pane of figure
+\ref{commonEmitterEquivalentCircuits}; the AC in the right.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]
+		{figures/commonEmitterAmplifier.png}
+	\caption{
+		Broadband Common-Emitter Stage
+	}
+	\label{commonEmitterAmplifier}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]
+		{figures/commonEmitterEquivalentCircuits}
+	\caption{
+		Common-emitter equivalent circuits: DC (left),
+		AC (right).
+	}
+	\label{commonEmitterEquivalentCircuits}
+\end{figure}
+
+
 \subsection{Coupling Capacitors}
 
 The coupling capacitors, labeled $C_{Cx}$, isolate each stage from
@@ -251,6 +280,7 @@ greatest. Applying Kirchoff's current law to the parallel model...
 One can see that $Z_{L}$ will reach its peak when:
 \begin{equation*}
 \left(\omega L-\frac{1}{\omega C}\right)=0
+\label{resonantFrequencyEq}
 \end{equation*}
 
 Therefore, the maximum impedance of a tank circuit is:
@@ -259,13 +289,21 @@ Therefore, the maximum impedance of a tank circuit is:
 f_{0}=\frac{1}{2\pi\sqrt{LC}}
 \end{equation}
 
+More generally than non-ideal inductors; the resonant frequency,
+bandwidth, and quality of a parallel RLC circuit are related to 
+L, C, and R.
+\begin{equation}
+Q=\frac{\omega_{0}}{B}=\omega_{0}RC=\frac{R}{\omega_{0}L}
+\label{parallelRLCequation}
+\end{equation}
+
 \section{Design and Simulation}
 
 \subsection{Specifications}
 
 \subsection{Tank Circuits}
 
-Two inductors were wound with ~22 turns. Their inductance and quality
+Two inductors were wound with \char`\~22 turns. Their inductance and quality
 were measured using a Hewlett-Packard 4342A Q Meter. An appropriate
 discrete capacitor and trimming capacitor were selected for both to
 obtain a tank circuit with resonance at ~10 MHz. The fixed capacitors
@@ -274,24 +312,31 @@ were soldered to their inductors in parallel.
 The soldered LC circuit were breadboarded in parallel with a trimming
 capacitor and tuned. Then, the breadboarded tank circuit was measured
 for net capacitance, resonance frequency, and quality using the HP
-Q Meter. The method for this measurement is attached in appendix
-\ref{qMeter}.
-
-The results of these measurements are shown in table
-\ref{qualityMeasurements}
+Q Meter. The methods for these measurements are attached in appendix
+\ref{qMeter} and the results are shown in table
+\ref{tankCircuitCharacteristics}.
 
 \begin{table}[ht]
-\caption{Quality \& Other Measurements of Tank Circuits}
-\begin{tabular}{| c | c | c | c | c | c | c | c | c |}
-\hline
-	&L		&$Q_{L}$	& $C_{fixed}$	& $C_{trim}$	& $C_{d}$	& $f_{0}$	& $Q_{tank}\tablefootnote{measured at 10MHz}$	& $R_{p}$ \\
-	&(meas.)	&(meas.)	&(nominal val.)	&(datasheet)	&(meas.)	&(meas.)	&(meas.)					&(calc.)\\ 
+\centering
+\caption{Tank Circuit Design and Measured Characteristics}
+\begin{tabular}{c|c|c|c}
 \hline\hline
-1	& 4.2$\mu H$	& 90		&33 $pF$	&5-35 $pF$	&55 $pF$	&13.3 $MHz$	&85.5						& 2.18 $k\Omega$\\
-2	&		&		&		&		&		&		&						&\\
+Parameter	&1		&2	&Description	\\
+\hline\hline
+$L$		&$4.2\mu H$	&	&measured inductor	\\
+$Q_{L}$		&		&	&on HP Q Meter	\\
 \hline
+$C_{target}$	&$90$		&	&from eq. \ref{resonantFrequencyEq}	\\
+$C_{fixed}$	&$33pF$		&	&nominal value		\\
+$C_{trim}$	&$5-35pF$	&	&approx. range		\\
+\hline
+$C_{d}$		&$55pF$		&	&measured LC circuit	\\
+$f_{0}$		&$13.3MHz$	&	&on HP Q Meter,		\\
+$Q$		&$85.5$		&	&see \ref{qMeter}	\\
+$R_{p}$		&$30k\Omega$	&	&from eq. \ref{parallelRLCequation}	\\
+\hline\hline
 \end{tabular}
-\label{qualityMeasurements}
+\label{tankCircuitCharacteristics}
 \end{table}
 
 \subsection{Common-Base Stage}
@@ -335,7 +380,6 @@ With $R_{E}$, the quiescent current can be calculated with equation
 The first BJT was characterized and a DC load line drawn. Because all
 of the node voltages are pinned, the load line is vertical; $V_{CE}$
 is independent of $I_{EQ}$. It was found that
-
 \begin{equation*}
 \beta_{Q1}=176\qquad\qquad V_{AQ1}=452V
 \end{equation*}
@@ -404,7 +448,7 @@ and Service Manual, pages 35-37.
 
 \includegraphics[width=1\textwidth]{qMeter/page37}
 
-\subsection{Common-Base SPICE Simulation}
+\subsection{Common-Base SPICE Netlist}
 \label{CBstageNetlist}
 
 The following netlist was used to simulate the CB stage. The labeling
