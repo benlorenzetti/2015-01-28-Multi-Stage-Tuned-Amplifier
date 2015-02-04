@@ -4,12 +4,13 @@
 \contentsline {subsection}{\numberline {3.1}Tank Circuits}{3}
 \contentsline {subsection}{\numberline {3.2}Common-Base Broadband Amplifier}{4}
 \contentsline {subsection}{\numberline {3.3}Common-Emitter Broadband Amplifier}{5}
-\contentsline {subsection}{\numberline {3.4}Coupling Capacitors}{6}
-\contentsline {section}{\numberline {4}Design and Simulation}{6}
-\contentsline {subsection}{\numberline {4.1}Specifications}{6}
-\contentsline {subsection}{\numberline {4.2}Tank Circuits}{6}
-\contentsline {subsection}{\numberline {4.3}Common-Base Stage}{7}
-\contentsline {subsection}{\numberline {4.4}Common-Emitter Stage}{8}
-\contentsline {section}{\numberline {5}Appendices}{9}
-\contentsline {subsection}{\numberline {5.1}HP 4342A Q Meter}{9}
-\contentsline {subsection}{\numberline {5.2}Common-Base SPICE Netlist}{13}
+\contentsline {subsection}{\numberline {3.4}Voltage Gain and $I_{EQ}$}{7}
+\contentsline {subsection}{\numberline {3.5}Coupling Capacitors}{7}
+\contentsline {section}{\numberline {4}Design and Simulation}{7}
+\contentsline {subsection}{\numberline {4.1}Specifications}{7}
+\contentsline {subsection}{\numberline {4.2}Tank Circuits}{8}
+\contentsline {subsection}{\numberline {4.3}Common-Base Stage}{8}
+\contentsline {subsection}{\numberline {4.4}Common-Emitter Stage}{10}
+\contentsline {section}{\numberline {5}Appendices}{10}
+\contentsline {subsection}{\numberline {5.1}HP 4342A Q Meter}{10}
+\contentsline {subsection}{\numberline {5.2}Common-Base SPICE Netlist}{14}

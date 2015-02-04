@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.28)  3 FEB 2015 18:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.13)  4 FEB 2015 11:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **report.tex
 (./report.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+Babel <3.9h> and hyphenation patterns for 2 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
@@ -317,7 +317,7 @@ Package caption Info: End \AtBeginDocument code.
 [1
 
 ]
-<figures/BJTforwardBiasConfigurations.png, id=17, 2040.62375pt x 699.61375pt>
+<figures/BJTforwardBiasConfigurations.png, id=19, 2040.62375pt x 699.61375pt>
 File: figures/BJTforwardBiasConfigurations.png Graphic file (type png)
 
 <use figures/BJTforwardBiasConfigurations.png>
@@ -358,117 +358,122 @@ Package pdftex.def Info: figures/commonEmitterEquivalentCircuits.png used on in
 put line 273.
 (pdftex.def)             Requested size: 346.89732pt x 87.58524pt.
  [5 <./figures/commonEmitterAmplifier.png>] [6 <./figures/commonEmitterEquivale
-ntCircuits.png>]
-<figures/commonBaseStage.png, id=52, 154.6578pt x 206.2104pt>
+ntCircuits.png>] [7]
+<figures/commonBaseStage.png, id=56, 154.6578pt x 206.2104pt>
 File: figures/commonBaseStage.png Graphic file (type png)
 
 <use figures/commonBaseStage.png>
-Package pdftex.def Info: figures/commonBaseStage.png used on input line 368.
+Package pdftex.def Info: figures/commonBaseStage.png used on input line 475.
 (pdftex.def)             Requested size: 108.405pt x 144.53822pt.
- [7 <./figures/commonBaseStage.png>]
-<measurements/q1Characteristics.png, id=57, 471.6822pt x 429.2838pt>
+ [8]
+<measurements/q1Characteristics.png, id=60, 471.6822pt x 429.2838pt>
 File: measurements/q1Characteristics.png Graphic file (type png)
 
 <use measurements/q1Characteristics.png>
 Package pdftex.def Info: measurements/q1Characteristics.png used on input line 
-407.
+514.
 (pdftex.def)             Requested size: 260.17465pt x 236.7946pt.
+ [9 <./figures/commonBaseStage.png> <./measurements/q1Characteristics.png (PNG 
+copy)>]
 Package epstopdf Info: Source file: <ngspice/CBstage.eps>
-(epstopdf)                    date: 2015-02-03 12:40:49
+(epstopdf)                    date: 2015-02-04 08:48:37
 (epstopdf)                    size: 3563 bytes
 (epstopdf)             Output file: <ngspice/CBstage-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-02-03 12:40:49
+(epstopdf)                    date: 2015-02-04 08:48:37
 (epstopdf)                    size: 6657 bytes
 (epstopdf)             Command: <repstopdf --outfile=ngspice/CBstage-eps-conver
 ted-to.pdf ngspice/CBstage.eps>
-(epstopdf)             \includegraphics on input line 430.
+(epstopdf)             \includegraphics on input line 537.
 Package epstopdf Info: Output file is already uptodate.
 
-<ngspice/CBstage-eps-converted-to.pdf, id=58, 560.0925pt x 560.0925pt>
+<ngspice/CBstage-eps-converted-to.pdf, id=65, 560.0925pt x 560.0925pt>
 File: ngspice/CBstage-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ngspice/CBstage-eps-converted-to.pdf>
 Package pdftex.def Info: ngspice/CBstage-eps-converted-to.pdf used on input lin
-e 430.
+e 537.
 (pdftex.def)             Requested size: 260.17465pt x 260.18393pt.
 
 
-LaTeX Warning: Reference `commonEmitterStage' on page 8 undefined on input line
- 442.
+LaTeX Warning: Reference `commonEmitterStage' on page 10 undefined on input lin
+e 549.
 
 
-LaTeX Warning: Reference `q2Characteristics' on page 8 undefined on input line 
-447.
+LaTeX Warning: Reference `q2Characteristics' on page 10 undefined on input line
+ 554.
 
 
-LaTeX Warning: Reference `gainVSquiescentCurrent' on page 8 undefined on input 
-line 450.
+LaTeX Warning: Reference `gainVSquiescentCurrent' on page 10 undefined on input
+ line 557.
 
-<qMeter/page35.png, id=59, 1638.12pt x 2152.04pt> [8 <./measurements/q1Characte
-ristics.png (PNG copy)>]
+<qMeter/page35.png, id=66, 1638.12pt x 2152.04pt>
 File: qMeter/page35.png Graphic file (type png)
  <use qMeter/page35.png>
-Package pdftex.def Info: qMeter/page35.png used on input line 462.
+Package pdftex.def Info: qMeter/page35.png used on input line 569.
 (pdftex.def)             Requested size: 433.62001pt x 569.66399pt.
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 462--463
+Overfull \hbox (17.0pt too wide) in paragraph at lines 569--570
 [][] 
  []
 
-<qMeter/page36.png, id=63, 1638.12pt x 2152.04pt> [9 <./ngspice/CBstage-eps-con
-verted-to.pdf>]
+<qMeter/page36.png, id=67, 1638.12pt x 2152.04pt> [10 <./ngspice/CBstage-eps-co
+nverted-to.pdf>]
 File: qMeter/page36.png Graphic file (type png)
  <use qMeter/page36.png>
-Package pdftex.def Info: qMeter/page36.png used on input line 464.
+Package pdftex.def Info: qMeter/page36.png used on input line 571.
 (pdftex.def)             Requested size: 433.62001pt x 569.66399pt.
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 464--465
+Overfull \hbox (17.0pt too wide) in paragraph at lines 571--572
 [][] 
  []
 
-<qMeter/page37.png, id=72, 1638.12pt x 2152.04pt> [10 <./qMeter/page35.png>]
+<qMeter/page37.png, id=76, 1638.12pt x 2152.04pt> [11 <./qMeter/page35.png>]
 File: qMeter/page37.png Graphic file (type png)
 
 <use qMeter/page37.png>
-Package pdftex.def Info: qMeter/page37.png used on input line 466.
+Package pdftex.def Info: qMeter/page37.png used on input line 573.
 (pdftex.def)             Requested size: 433.62001pt x 569.66399pt.
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 466--467
+Overfull \hbox (17.0pt too wide) in paragraph at lines 573--574
 [][] 
  []
 
-[11 <./qMeter/page36.png>] [12 <./qMeter/page37.png>] [13] (./report.aux)
+[12 <./qMeter/page36.png>] [13 <./qMeter/page37.png>] [14] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 4352 strings out of 493304
- 64868 string characters out of 6139871
- 140448 words of memory out of 5000000
- 7731 multiletter control sequences out of 15000+600000
+ 4355 strings out of 495028
+ 64892 string characters out of 6181497
+ 137192 words of memory out of 5000000
+ 7485 multiletter control sequences out of 15000+600000
  11241 words of font info for 41 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
+ 14 hyphenation exceptions out of 8191
  38i,9n,38p,789b,273s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (15 pages, 3577937 bytes).
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on report.pdf (16 pages, 3593909 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
- 88 compressed objects within 1 object stream
+ 148 PDF objects out of 1000 (max. 8388607)
+ 93 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

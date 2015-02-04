@@ -278,6 +278,113 @@ The DC equivalent circuit is shown in the left pane of figure
 	\label{commonEmitterEquivalentCircuits}
 \end{figure}
 
+The DC equivalent circuit, shown in figure
+\ref{commonEmitterEquivalentCircuits}, used a thevenin source
+conversion from the base bias resistors $R_{1}$ and $R_{2}$. The
+thevenin equivalent's parameters are found by
+\begin{equation}
+R_{TH}=R_{1}||R_{2}=\frac{R_{1}R_{2}}{R_{1}+R_{2}}
+\end{equation}
+and
+\begin{equation}
+V_{BB}=V_{EE}+\frac{R_{2}}{R_{1}+R_{2}}(V_{CC}-V_{EE})
+\end{equation}
+
+The same thevenin conversion was used for the AC circuit in figure
+\ref{commonEmitterEquivalentCircuits} for $R_{TH}$. The other
+parameters in the AC equivalent circuit come from the hybrid-$\pi$
+model:
+\begin{equation}
+r_{\pi}=\frac{V_{thermal}}{I_{BQ}}=\frac{V_{th}(\beta+1)}{I_{EQ}}
+\label{rPiEq}
+\end{equation}
+
+\begin{equation}
+g_{m}=\frac{\beta}{r_{\pi}}
+\end{equation}
+
+The DC loading characteristics are easily found by using KVL on the
+collector-emitter loop.
+
+\begin{equation*}
+V_{CC}-V_{CE}-R_{E}I_{EQ}-V_{EE}=0
+\end{equation*}
+
+\begin{equation}
+I_{E}=\frac{V_{CC}-V_{EE}}{R_{E}}-\frac{V_{CE}}{R_{E}}
+\end{equation}
+
+The AC characteristics require a little more algebra. We are
+interested in the small signal voltage gain and input resistance
+for a CE stage. Kirchoff's current law at the emitter node of the 
+AC equivalent circuit (figure \ref{commonEmitterEquivalentCircuits},
+right pane) can be written:
+\begin{equation*}
+\frac{v_{e}-v_{s}}{r_{\pi}}+\frac{v_{e}}{R_{EX}}+g_{m}(v_{e}-v_{s})=0
+\end{equation*}
+
+Collecting terms and separating variables gives:
+\begin{equation*}
+v_{e}\left[\frac{1}{r_{\pi}}+\frac{1}{R_{EX}}+g_{m}\right]
+=v_{s}\left[\frac{1}{r_{\pi}}+g_{m}\right]
+\end{equation*}
+
+Multiplying both sides by $r_{\pi}$ and $R_{EX}$ gives:
+\begin{equation*}
+v_{e}[R_{EX}(1+\beta)+r_{\pi}]=v_{s}(1+\beta)R_{EX}
+\end{equation*}
+
+So the ratio between $v{e}$ and $v_{s}$ is:
+\begin{equation*}
+\frac{v_{e}}{v_{s}}=
+\left[\frac{(1+\beta)R_{EX}}{(1+\beta)R_{EX}+r_{\pi}}\right]
+\end{equation*}
+
+Looking ahead, in the interest of saving paper, it would be better
+to have an expression for $v_{s}-v_{e}$ as a function of $v_{s}$.
+\begin{equation*}
+v_{s}-v_{e}=
+v_{s}\left[1-\frac{v_{e}}{v_{s}}\right]=
+v_{s}\left[1-\frac{(1+\beta)R_{EX}}{(1+\beta)R_{EX}+r_{\pi}}\right]
+\end{equation*}
+
+\begin{equation}
+v_{s}-v_{e}=
+\left[\frac{r_{\pi}}{(1+\beta)R_{EX}+r_{\pi}}\right]v_{s}
+\label{vsMinusVe}
+\end{equation}
+
+The small signal voltage gain can be found from Ohm's law, applied
+across the resistors between the output and ground.
+\begin{equation*}
+v_{o}=(R_{C}||R_{L})*g_{m}(v_{s}-v_{e})
+\end{equation*}
+
+Substituting equation \ref{vsMinusVe} for the voltage difference and
+then recognizing that $r_{\pi}g_{m}=\beta$...
+\begin{equation*}
+v_{o}=(R_{C}||R_{L})
+\left[\frac{\beta}{(1+\beta)R_{EX}+r_{\pi}}\right]v_{s}
+\end{equation*}
+
+Dividing both sides by $v_{s}$ and pulling $\alpha$ out of the
+bracket gives us the magnitude of the transfer function in ASK CAHAY
+form.
+\begin{equation}
+A_{v}=\frac{(R_{C}||R_{L})}{R_{EX}}*\frac{\beta}{\beta+1}*
+\frac{1}{1+\frac{r_{\pi}}{(\beta+1)R_{EX}}}
+\label{ceAv}
+\end{equation}
+
+\subsection{Voltage Gain and $I_{EQ}$}
+
+Substituting equation \ref{rPiEq} for $r_{\pi}$ into equation 
+\ref{ceAv} gives the small-signal gain as a function of the quiescent
+current.
+\begin{equation}
+A_{v}=\frac{(R_{C}||R_{L})}{R_{EX}}*\frac{\beta}{\beta+1}*
+\frac{1}{1+\frac{V_{th}}{R_{EX}I_{EQ}}}
+\end{equation}
 
 \subsection{Coupling Capacitors}
 
