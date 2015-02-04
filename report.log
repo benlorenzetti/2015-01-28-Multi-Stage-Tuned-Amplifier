@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.13)  4 FEB 2015 11:25
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.28)  4 FEB 2015 16:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **report.tex
 (./report.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 2 languages loaded.
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
@@ -161,6 +161,15 @@ Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
 \c@subfigure=\count104
 \c@subtable=\count105
 )
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+Package: nicefrac 1998/08/04 v0.9b Nice fractions
+\L@UnitsRaiseDisplaystyle=\skip46
+\L@UnitsRaiseTextstyle=\skip47
+\L@UnitsRaiseScriptstyle=\skip48
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+))
 (/usr/share/texlive/texmf-dist/tex/latex/tablefootnote/tablefootnote.sty
 Package: tablefootnote 2014/01/26 v1.1c Table foot notes (HMM)
 
@@ -180,15 +189,12 @@ Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Bcount=\count108
 \calc@Adimen=\dimen129
 \calc@Bdimen=\dimen130
-\calc@Askip=\skip46
-\calc@Bskip=\skip47
+\calc@Askip=\skip49
+\calc@Bskip=\skip50
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count109
-\calc@Cskip=\skip48
-)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+\calc@Cskip=\skip51
 )
 (/usr/share/texlive/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
 Package: ifmtarg 2009/09/02 v1.2a check for an empty argument
@@ -199,18 +205,18 @@ Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
 )) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -322,7 +328,7 @@ File: figures/BJTforwardBiasConfigurations.png Graphic file (type png)
 
 <use figures/BJTforwardBiasConfigurations.png>
 Package pdftex.def Info: figures/BJTforwardBiasConfigurations.png used on input
- line 51.
+ line 52.
 (pdftex.def)             Requested size: 325.215pt x 111.49213pt.
  [2
 
@@ -331,14 +337,14 @@ Package pdftex.def Info: figures/BJTforwardBiasConfigurations.png used on input
 File: figures/tankCircuit.png Graphic file (type png)
 
 <use figures/tankCircuit.png>
-Package pdftex.def Info: figures/tankCircuit.png used on input line 120.
+Package pdftex.def Info: figures/tankCircuit.png used on input line 121.
 (pdftex.def)             Requested size: 325.215pt x 105.83427pt.
  [3 <./figures/tankCircuit.png (PNG copy)>]
 <figures/commonBaseAmplifier.png, id=35, 518.1759pt x 162.8484pt>
 File: figures/commonBaseAmplifier.png Graphic file (type png)
 
 <use figures/commonBaseAmplifier.png>
-Package pdftex.def Info: figures/commonBaseAmplifier.png used on input line 178
+Package pdftex.def Info: figures/commonBaseAmplifier.png used on input line 179
 .
 (pdftex.def)             Requested size: 433.62001pt x 136.27736pt.
  [4 <./figures/commonBaseAmplifier.png>]
@@ -347,7 +353,7 @@ File: figures/commonEmitterAmplifier.png Graphic file (type png)
 
 <use figures/commonEmitterAmplifier.png>
 Package pdftex.def Info: figures/commonEmitterAmplifier.png used on input line 
-263.
+264.
 (pdftex.def)             Requested size: 173.44534pt x 142.26717pt.
 
 <figures/commonEmitterEquivalentCircuits.png, id=42, 2019.545pt x 509.905pt>
@@ -355,7 +361,7 @@ File: figures/commonEmitterEquivalentCircuits.png Graphic file (type png)
 
 <use figures/commonEmitterEquivalentCircuits.png>
 Package pdftex.def Info: figures/commonEmitterEquivalentCircuits.png used on in
-put line 273.
+put line 274.
 (pdftex.def)             Requested size: 346.89732pt x 87.58524pt.
  [5 <./figures/commonEmitterAmplifier.png>] [6 <./figures/commonEmitterEquivale
 ntCircuits.png>] [7]
@@ -363,82 +369,81 @@ ntCircuits.png>] [7]
 File: figures/commonBaseStage.png Graphic file (type png)
 
 <use figures/commonBaseStage.png>
-Package pdftex.def Info: figures/commonBaseStage.png used on input line 475.
+Package pdftex.def Info: figures/commonBaseStage.png used on input line 517.
 (pdftex.def)             Requested size: 108.405pt x 144.53822pt.
  [8]
-<measurements/q1Characteristics.png, id=60, 471.6822pt x 429.2838pt>
+<measurements/q1Characteristics.png, id=61, 471.6822pt x 429.2838pt>
 File: measurements/q1Characteristics.png Graphic file (type png)
 
 <use measurements/q1Characteristics.png>
 Package pdftex.def Info: measurements/q1Characteristics.png used on input line 
-514.
+556.
 (pdftex.def)             Requested size: 260.17465pt x 236.7946pt.
- [9 <./figures/commonBaseStage.png> <./measurements/q1Characteristics.png (PNG 
-copy)>]
+ [9 <./figures/commonBaseStage.png>]
 Package epstopdf Info: Source file: <ngspice/CBstage.eps>
-(epstopdf)                    date: 2015-02-04 08:48:37
+(epstopdf)                    date: 2015-02-04 14:32:02
 (epstopdf)                    size: 3563 bytes
 (epstopdf)             Output file: <ngspice/CBstage-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-02-04 08:48:37
+(epstopdf)                    date: 2015-02-04 14:32:02
 (epstopdf)                    size: 6657 bytes
 (epstopdf)             Command: <repstopdf --outfile=ngspice/CBstage-eps-conver
 ted-to.pdf ngspice/CBstage.eps>
-(epstopdf)             \includegraphics on input line 537.
+(epstopdf)             \includegraphics on input line 579.
 Package epstopdf Info: Output file is already uptodate.
 
-<ngspice/CBstage-eps-converted-to.pdf, id=65, 560.0925pt x 560.0925pt>
+<ngspice/CBstage-eps-converted-to.pdf, id=66, 560.0925pt x 560.0925pt>
 File: ngspice/CBstage-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ngspice/CBstage-eps-converted-to.pdf>
 Package pdftex.def Info: ngspice/CBstage-eps-converted-to.pdf used on input lin
-e 537.
+e 579.
 (pdftex.def)             Requested size: 260.17465pt x 260.18393pt.
 
 
 LaTeX Warning: Reference `commonEmitterStage' on page 10 undefined on input lin
-e 549.
+e 591.
 
+<measurements/q2Characteristics.png, id=67, 2179.14125pt x 1771.61874pt>
+File: measurements/q2Characteristics.png Graphic file (type png)
 
-LaTeX Warning: Reference `q2Characteristics' on page 10 undefined on input line
- 554.
-
-
-LaTeX Warning: Reference `gainVSquiescentCurrent' on page 10 undefined on input
- line 557.
-
-<qMeter/page35.png, id=66, 1638.12pt x 2152.04pt>
+<use measurements/q2Characteristics.png>
+Package pdftex.def Info: measurements/q2Characteristics.png used on input line 
+604.
+(pdftex.def)             Requested size: 346.89732pt x 282.00502pt.
+ [10 <./measurements/q1Characteristics.png (PNG copy)>] <qMeter/page35.png, id=
+71, 1638.12pt x 2152.04pt> [11 <./ngspice/CBstage-eps-converted-to.pdf>]
 File: qMeter/page35.png Graphic file (type png)
  <use qMeter/page35.png>
-Package pdftex.def Info: qMeter/page35.png used on input line 569.
+Package pdftex.def Info: qMeter/page35.png used on input line 654.
 (pdftex.def)             Requested size: 433.62001pt x 569.66399pt.
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 569--570
+Overfull \hbox (17.0pt too wide) in paragraph at lines 654--655
 [][] 
  []
 
-<qMeter/page36.png, id=67, 1638.12pt x 2152.04pt> [10 <./ngspice/CBstage-eps-co
-nverted-to.pdf>]
+<qMeter/page36.png, id=81, 1638.12pt x 2152.04pt> [12 <./measurements/q2Charact
+eristics.png>]
 File: qMeter/page36.png Graphic file (type png)
  <use qMeter/page36.png>
-Package pdftex.def Info: qMeter/page36.png used on input line 571.
+Package pdftex.def Info: qMeter/page36.png used on input line 656.
 (pdftex.def)             Requested size: 433.62001pt x 569.66399pt.
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 571--572
+Overfull \hbox (17.0pt too wide) in paragraph at lines 656--657
 [][] 
  []
 
-<qMeter/page37.png, id=76, 1638.12pt x 2152.04pt> [11 <./qMeter/page35.png>]
+<qMeter/page37.png, id=86, 1638.12pt x 2152.04pt> [13 <./qMeter/page35.png>]
 File: qMeter/page37.png Graphic file (type png)
 
 <use qMeter/page37.png>
-Package pdftex.def Info: qMeter/page37.png used on input line 573.
+Package pdftex.def Info: qMeter/page37.png used on input line 658.
 (pdftex.def)             Requested size: 433.62001pt x 569.66399pt.
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 573--574
+Overfull \hbox (17.0pt too wide) in paragraph at lines 658--659
 [][] 
  []
 
-[12 <./qMeter/page36.png>] [13 <./qMeter/page37.png>] [14] (./report.aux)
+[14 <./qMeter/page36.png>] [15 <./qMeter/page37.png>] [16] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -447,12 +452,12 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 4355 strings out of 495028
- 64892 string characters out of 6181497
- 137192 words of memory out of 5000000
- 7485 multiletter control sequences out of 15000+600000
+ 4382 strings out of 493304
+ 65502 string characters out of 6139871
+ 143135 words of memory out of 5000000
+ 7756 multiletter control sequences out of 15000+600000
  11241 words of font info for 41 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
+ 957 hyphenation exceptions out of 8191
  38i,9n,38p,789b,273s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
@@ -468,12 +473,13 @@ mr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (16 pages, 3593909 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on report.pdf (18 pages, 3656528 bytes).
 PDF statistics:
- 148 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
+ 160 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

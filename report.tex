@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{nicefrac}
 \usepackage{tablefootnote}
 \begin{document}
 
@@ -312,6 +313,7 @@ V_{CC}-V_{CE}-R_{E}I_{EQ}-V_{EE}=0
 
 \begin{equation}
 I_{E}=\frac{V_{CC}-V_{EE}}{R_{E}}-\frac{V_{CE}}{R_{E}}
+\label{ceDCloadEquation}
 \end{equation}
 
 The AC characteristics require a little more algebra. We are
@@ -368,15 +370,55 @@ v_{o}=(R_{C}||R_{L})
 \end{equation*}
 
 Dividing both sides by $v_{s}$ and pulling $\alpha$ out of the
-bracket gives us the magnitude of the transfer function in ASK CAHAY
+bracket gives us the magnitude of the transfer function in generic
 form.
 \begin{equation}
 A_{v}=\frac{(R_{C}||R_{L})}{R_{EX}}*\frac{\beta}{\beta+1}*
-\frac{1}{1+\frac{r_{\pi}}{(\beta+1)R_{EX}}}
+\frac{1}{1+\nicefrac{r_{\pi}}{(\beta+1)R_{EX}}}
 \label{ceAv}
 \end{equation}
 
+Now for the small-signal input resistance; the ratio between
+$v_{s}$ and $i_{s}$ in for the AC equivalent circuit in figure
+\ref{commonEmitterEquivalentCircuits}. Writing KCL at the base node
+yields
+\begin{equation*}
+-i_{s}+\frac{v_{s}}{R_{TH}}+\frac{v_{s}-v_{e}}{r_{\pi}}=0
+\end{equation*}
+
+Substituting equation \ref{vsMinusVe} for $v_{s-e}$ 
+eliminates $v_{e}$
+\begin{equation*}
+i_{s}=\frac{v_{s}}{R_{TH}}+\frac{v_{s}}{r_{\pi}}
+\left[\frac{r_{\pi}}{(1+\beta)R_{EX}+r_{\pi}}\right]
+\end{equation*}
+
+Dividing both sides by $v_{s}$ gives the input conductance,
+but the partial fractions must be prepared for inversion.
+\begin{equation*}
+G_{in}=
+\left[\frac{1}{R_{TH}}+\frac{1}{(1+\beta)R_{EX}+r_{\pi}}\right]=
+\left[\frac{(1+\beta)R_{EX}+r_{\pi}+R_{TH}}
+{R_{TH}(R_{EX}(1+\beta)+r_{\pi})}\right]
+\end{equation*}
+
+Inverting the conductance and pulling
+$(1+\beta)R_{EX}+r_{\pi}$ out of both numerator and denominator gives
+the input resistance in generic form.
+\begin{equation*}
+R_{in}=R_{TH}
+\left[\frac{1}{1+\nicefrac{R_{TH}}{(1+\beta)R_{EX}+r_{\pi}}}\right]
+\end{equation*}
+
+If one assumes that $R_{TH}>>(1+\beta)R_{EX}+r_{\pi}$, then the
+$+1$ term in the denominator is negligible and the input resistance
+simplifies to
+\begin{equation}
+R_{in}=(1+\beta)R_{EX}+r_{\pi}
+\end{equation}
+
 \subsection{Voltage Gain and $I_{EQ}$}
+\label{gainVSquiescentCurrent}
 
 Substituting equation \ref{rPiEq} for $r_{\pi}$ into equation 
 \ref{ceAv} gives the small-signal gain as a function of the quiescent
@@ -551,12 +593,55 @@ stages. A single CE stage is shown in figure
 The second BJT was characterized on the Tektronix Curve Tracer
 using a range of 20V and 2mA (the maximum swing would actually be
 24V). The i-v characteristics and the DC load line are shown in
-figure \ref{q2Characteristics}.
+figure \ref{q2Characteristics}. It was found that
+\begin{equation*}
+\beta_{Q2}=192\qquad\textrm{and}\qquad V_{A(Q2)}=228V
+\end{equation*}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]
+		{measurements/q2Characteristics}
+	\caption{
+		Q2 Current-Voltage Characteristics and DC Load Line
+	}
+	\label{q2Characteristics}
+\end{figure}
 
 The MATLAB analysis of $A_{v}(I_{EQ})$ in section
 \ref{gainVSquiescentCurrent} showed that the gain of a CE amplifier
 grows proportionally to the quiescent current. Based on this, a
-relatively large quiescent current was chosen, ????.
+relatively large quiescent current was chosen, $1.92mA$.
+
+The Q-point should lie at exactly the middle of the two supplies to
+allow the maximum possible voltage swing; so $V_{CEQ}=12V$. Putting
+the desired Q-pt. into equation \ref{ceDCloadEquation} determined
+the required emitter resistance.
+\begin{equation*}
+R_{E2}=\frac{V_{CC}-V_{EE}-V_{CEQ}}{I_{EQ}}=\frac{12V}{1.92mA}
+=6.25k\Omega
+\end{equation*}
+
+The value of $R_{TH}$ should be at least 10 times the emitter
+resistance to ensure a stiff base bias. \footnote{A stiff base means
+that $R_{1}$ and $R_{2}$ behave like a voltage divider, with 
+negligible current being diverted into the base.} Therefore,
+\begin{equation*}
+R_{TH}=62.5k\Omega=R_{1}||R_{2}
+\end{equation*}
+
+If $V_{CEQ}$ is 12V, then the base must be biased at +0.7V to forward
+bias the base-emitter junction. The base resistors form a voltage
+divider between $V_{CC}$ and $V_{EE}$ to achieve this.
+\begin{equation*}
+0.7V=\frac{R_{2}}{R_{1}+R_{2}}(24V)-12V
+\end{equation*}
+
+Solving the voltage divider equation with the definintion of $R_{TH}$
+gives us values for $R_{1}$ and $R_{2}$.
+\begin{equation*}
+R_{1}=177.2k\Omega\qquad\qquad R_{2}=96.6k\Omega
+\end{equation*}
 
 \section{Appendices}
 

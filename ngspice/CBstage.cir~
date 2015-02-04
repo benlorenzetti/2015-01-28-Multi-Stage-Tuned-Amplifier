@@ -32,4 +32,3 @@ plot db(v(out)/v(s))
 plot ph(v(out))-ph(v(s))
 write CBstage.txt db(v(output)/v(s)) ph(v(output))-ph(v(s))
 
-.end
