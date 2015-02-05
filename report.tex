@@ -374,7 +374,7 @@ Dividing both sides by $v_{s}$ and pulling $\alpha$ out of the
 bracket gives us the magnitude of the transfer function in generic
 form.
 \begin{equation}
-A_{v}=\frac{(R_{C}||R_{L})}{R_{EX}}*\frac{\beta}{\beta+1}*
+A_{v(CE)}=\frac{(R_{C}||R_{L})}{R_{EX}}*\frac{\beta}{\beta+1}*
 \frac{1}{1+\nicefrac{r_{\pi}}{(\beta+1)R_{EX}}}
 \label{ceAv}
 \end{equation}
@@ -415,7 +415,8 @@ If one assumes that $R_{TH}>>(1+\beta)R_{EX}+r_{\pi}$, then the
 $+1$ term in the denominator is negligible and the input resistance
 simplifies to
 \begin{equation}
-R_{in}=(1+\beta)R_{EX}+r_{\pi}
+R_{in(CE)}=(1+\beta)R_{EX}+r_{\pi}
+\label{ceRin}
 \end{equation}
 
 \subsection{Voltage Gain and $I_{EQ}$}
@@ -558,7 +559,7 @@ $R_{p}$		&$30k\Omega$	&	&from eq. \ref{parallelRLCequation}	\\
 \label{tankCircuitCharacteristics}
 \end{table}
 
-\subsection{Common-Base Stage}
+\subsection{Common-Base Stage I}
 
 The first stage must be a common-base amplifier in order to achieve
 low input resistance. The emitter resitance must be
@@ -645,12 +646,23 @@ The CB stage was assembled on the breadboard and tested for its
 frequency response. A load resistor of $12.5k\Omega$ was included.
 The results are shown in figure \ref{CBstageMagnitudePlot}.
 
-\subsection{Common-Emitter Stage}
+\subsection{Common-Emitter Stage II}
+\label{stage2section}
 
 The common-emitter configuration provides the highest overall power
 gain, compared to CB and CC. This makes it ideal for the middle
 stages. A single CE stage is shown in figure 
 \ref{commonEmitterStage}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.25\textwidth]
+		{figures/commonEmitterStage}
+	\caption{
+		Common-emitter stage with SPICE netlist labels.
+	}
+	\label{commonEmitterStage}
+\end{figure}
 
 The MATLAB analysis of $A_{v}(I_{EQ})$ in section
 \ref{gainVSquiescentCurrent} showed that the gain of a CE amplifier
@@ -702,6 +714,70 @@ gives us values for $R_{1}$ and $R_{2}$.
 R_{1}=198.4\,k\Omega\qquad\qquad R_{2}=223.0\,k\Omega
 \end{equation*}
 
+With DC biasing set, the input resistance of the CE stage is found
+from equation \ref{ceRin}.
+\begin{equation*}
+R_{in2}=(1+\beta)R_{EX}+r_{\pi}=
+(1+\beta)(R_{EX}+\nicefrac{V_{th}}{I_{EQ}})
+\end{equation*}
+
+The partial bypass resistance is arbitrarily chosen to be
+$50\,\Omega$, based on prior experience and the CE voltage gain
+(equation \ref{ceAv}). Therefore,
+\begin{equation*}
+R_{in2}=192(50+\nicefrac{0.0259V}{1.14mA})=14.0\,k\Omega
+\end{equation*}
+
+From equation \ref{couplingCapacitors} and using $R_{in2}$,
+
+\begin{equation*}
+C_{C2}\geq 11.4\,nF
+\end{equation*}
+
+At this point, all of the discrete components for the CB stage have
+been determined. A SPICE simulation was performed to check the
+performance of the stage. For a load value, the input resistance of
+the first common emitter stage was used. The netlist used is included
+in appendix \ref{CBstageNetlist} and the results are shown in figure
+\ref{CBstageMagnitudePlot}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]
+		{ngspice/CBstage.eps}
+	\caption{
+		Magnitude Gain of Common-Base Stage, in dB
+	}
+	\label{CBstageMagnitudePlot}
+\end{figure}
+
+
+\subsection{Common-Emitter Stage III}
+
+Another common-emitter stage was needed to increase the overall
+voltage gain. The resistor and capacitor values for this stage were
+designed using the same procedure as section \ref{stage2Section}.
+
+The I-V characteristics for Q3 are shown in figure 
+\ref{q3Characteristics}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]
+		{measurements/q3Characteristics}
+	\caption{
+		Q3 Current-Voltage Characteristics and DC Load Line
+	}
+	\label{q3Characteristics}
+\end{figure}
+
+Astonishingly conveniently
+\footnote{or perhaps astonishingly cleverly},
+the Q-pt curser for Q3 was identical to Q2. Therefore, the discrete
+resistors and capacitors needed for stage 3 are the same as stage 2.
+
+\subsection{Common-Collector Stage IV}
+
 \section{Appendices}
 
 \subsection{HP 4342A Q Meter}
@@ -710,12 +786,16 @@ R_{1}=198.4\,k\Omega\qquad\qquad R_{2}=223.0\,k\Omega
 The following 3 pages are taken from the HP 4342A Q Meter Operating
 and Service Manual, pages 35-37.
 
+\clearpage
 \includegraphics[width=1\textwidth]{qMeter/page35}
 
+\pagebreak
 \includegraphics[width=1\textwidth]{qMeter/page36}
 
+\pagebreak
 \includegraphics[width=1\textwidth]{qMeter/page37}
 
+\pagebreak
 \subsection{Common-Base SPICE Netlist}
 \label{CBstageNetlist}
 

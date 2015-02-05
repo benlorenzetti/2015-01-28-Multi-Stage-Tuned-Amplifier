@@ -10,9 +10,11 @@
 \contentsline {subsection}{\numberline {4.1}Specifications}{8}
 \contentsline {subsection}{\numberline {4.2}BJT Characterization}{9}
 \contentsline {subsection}{\numberline {4.3}Tank Circuits}{9}
-\contentsline {subsection}{\numberline {4.4}Common-Base Stage}{9}
-\contentsline {subsection}{\numberline {4.5}Common-Emitter Stage}{11}
-\contentsline {section}{\numberline {5}Appendices}{12}
-\contentsline {subsection}{\numberline {5.1}HP 4342A Q Meter}{12}
-\contentsline {subsection}{\numberline {5.2}Common-Base SPICE Netlist}{16}
-\contentsline {subsection}{\numberline {5.3}MATLAB Script for $A_{v}(I_{EQ})$}{16}
+\contentsline {subsection}{\numberline {4.4}Common-Base Stage I}{9}
+\contentsline {subsection}{\numberline {4.5}Common-Emitter Stage II}{11}
+\contentsline {subsection}{\numberline {4.6}Common-Emitter Stage III}{12}
+\contentsline {subsection}{\numberline {4.7}Common-Collector Stage IV}{13}
+\contentsline {section}{\numberline {5}Appendices}{13}
+\contentsline {subsection}{\numberline {5.1}HP 4342A Q Meter}{13}
+\contentsline {subsection}{\numberline {5.2}Common-Base SPICE Netlist}{19}
+\contentsline {subsection}{\numberline {5.3}MATLAB Script for $A_{v}(I_{EQ})$}{19}
