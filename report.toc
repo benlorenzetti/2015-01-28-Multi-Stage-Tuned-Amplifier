@@ -8,9 +8,11 @@
 \contentsline {subsection}{\numberline {3.5}Coupling Capacitors}{8}
 \contentsline {section}{\numberline {4}Design and Simulation}{8}
 \contentsline {subsection}{\numberline {4.1}Specifications}{8}
-\contentsline {subsection}{\numberline {4.2}Tank Circuits}{8}
-\contentsline {subsection}{\numberline {4.3}Common-Base Stage}{9}
-\contentsline {subsection}{\numberline {4.4}Common-Emitter Stage}{10}
+\contentsline {subsection}{\numberline {4.2}BJT Characterization}{9}
+\contentsline {subsection}{\numberline {4.3}Tank Circuits}{9}
+\contentsline {subsection}{\numberline {4.4}Common-Base Stage}{9}
+\contentsline {subsection}{\numberline {4.5}Common-Emitter Stage}{10}
 \contentsline {section}{\numberline {5}Appendices}{12}
 \contentsline {subsection}{\numberline {5.1}HP 4342A Q Meter}{12}
 \contentsline {subsection}{\numberline {5.2}Common-Base SPICE Netlist}{16}
+\contentsline {subsection}{\numberline {5.3}MATLAB Script for $A_{v}(I_{EQ})$}{16}

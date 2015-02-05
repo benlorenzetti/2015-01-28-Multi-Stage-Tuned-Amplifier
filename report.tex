@@ -1,6 +1,7 @@
 \documentclass[titlepage, letterpaper, 11pt]{article}
 \usepackage[letterpaper, margin=1.25in]{geometry}
 \usepackage{graphicx}
+\usepackage{comment}
 \usepackage{amsmath}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -198,13 +199,14 @@ I_{EQ}=\frac{-V_{BE(on)}-V_{EE}}{R_{E}}
 
 \begin{equation}
 r_{\pi}=\frac{V_{th}}{I_{BQ}}
-=\frac{V_{th}(\beta+1)R_{E}}{-V_{BE(on)}-V_{EE}}
-\label{commonBaseRpi}
+=\frac{(\beta+1)V_{th}}{I_{EQ}}
+\label{rPi}
 \end{equation}
 
 \begin{equation}
 g_{m}=\frac{\beta}{r_{\pi}}
-=\frac{\alpha(-V_{BE(on)}-V_{EE})}{V_{th}R_{E}}
+=\frac{\alpha I_{EQ}}{V_{th}}
+\label{gm}
 \end{equation}
 
 The hybrid-$\pi$ model for small signal AC modeling is shown in the
@@ -231,8 +233,13 @@ i_{s}=v_{s} \left[
 =\frac{r_{\pi}R_{E}}{R_{E}+r_{\pi}+g_{m}r_{\pi}R_{E}}
 \end{equation*}
 
-\begin{equation}
+\begin{equation*}
 R_{in}=\frac{r_{\pi}}{\beta+1+\frac{r_{\pi}}{r_{E}}}
+\end{equation*}
+
+\begin{equation}
+R_{in}=\frac{r_{\pi}}{\beta+1}
+\left[\frac{1}{1+\nicefrac{r_{\pi}}{(\beta+1)R_{E}}}\right]
 \label{commonBaseRin}
 \end{equation}
 
@@ -240,7 +247,8 @@ Applying KCL at the collector can be used to calculate the voltage
 gain of a single common-base stage.
 
 \begin{equation*}
--g_{m}v_{s}+\frac{v_{o}}{R_{L}}+\frac{v_{o}}{R_{C}}=0
+\textrm{KCL @ C:}\qquad
+g_{m}v_{s}+\frac{v_{o}}{R_{L}}+\frac{v_{o}}{R_{C}}=0
 \end{equation*}
 
 \begin{equation*}
@@ -249,6 +257,7 @@ v_{o}\left[\frac{R_{L}+R_{C}}{R_{L}R_{C}}\right]=g_{m}v_{s}
 
 \begin{equation}
 A_{v}=\frac{g_{m}R_{L}R_{C}}{R_{L}+R_{C}}
+\label{cbAv}
 \end{equation}
 
 \subsection{Common-Emitter Broadband Amplifier}
@@ -294,15 +303,7 @@ V_{BB}=V_{EE}+\frac{R_{2}}{R_{1}+R_{2}}(V_{CC}-V_{EE})
 The same thevenin conversion was used for the AC circuit in figure
 \ref{commonEmitterEquivalentCircuits} for $R_{TH}$. The other
 parameters in the AC equivalent circuit come from the hybrid-$\pi$
-model:
-\begin{equation}
-r_{\pi}=\frac{V_{thermal}}{I_{BQ}}=\frac{V_{th}(\beta+1)}{I_{EQ}}
-\label{rPiEq}
-\end{equation}
-
-\begin{equation}
-g_{m}=\frac{\beta}{r_{\pi}}
-\end{equation}
+model, defined previously in equations \ref{rPi} and \ref{gm}.
 
 The DC loading characteristics are easily found by using KVL on the
 collector-emitter loop.
@@ -420,13 +421,38 @@ R_{in}=(1+\beta)R_{EX}+r_{\pi}
 \subsection{Voltage Gain and $I_{EQ}$}
 \label{gainVSquiescentCurrent}
 
-Substituting equation \ref{rPiEq} for $r_{\pi}$ into equation 
-\ref{ceAv} gives the small-signal gain as a function of the quiescent
-current.
+Substituting equation \ref{gm} for $g_{m}$ into equation \ref{cbAv}
+gives voltage gain of a CB amplifier as a function of quiescent
+current. Similaryly, substituting equation \ref{rPi} for $r_{\pi}$
+into equation \ref{ceAv} gives the small-signal gain of a CE
+amplifier.
 \begin{equation}
-A_{v}=\frac{(R_{C}||R_{L})}{R_{EX}}*\frac{\beta}{\beta+1}*
-\frac{1}{1+\frac{V_{th}}{R_{EX}I_{EQ}}}
+A_{v(CB)}=\frac{\alpha(R_{L}||R_{C})I_{EQ}}{V_{th}}
 \end{equation}
+
+\begin{equation}
+A_{v(CE)}=\frac{\alpha(R_{C}||R_{L})}{R_{EX}}
+\left[\frac{1}{1+\nicefrac{V_{th}}{R_{EX}I_{EQ}}}\right]
+\end{equation}
+
+Using typical resistor values, the small-signal gain of broadband
+common-base and common-emitter amplifiers was plotted as a function
+of DC biasing. The MATLAB script used to generate plot
+\ref{gainQptRelation} is included in appendix \ref{matlabScript}.
+
+\begin{figure}[ht]
+	\centering
+\begin{comment}
+	\includegraphics[width=0.5\textwidth]
+		{figures/gainQptRelation}
+\end{comment}
+	\caption{
+		Relationship Between AC Voltage Gain and DC Biasing
+		for CB and CE Amplifier
+	}
+	\label{gainQptRelation}
+\end{figure}
+
 
 \subsection{Coupling Capacitors}
 
@@ -456,15 +482,42 @@ table \ref{labSpecs}.
 \begin{table}[ht]
 \centering
 \caption{Lab Specifications}
-\begin{tabular}{c | c}
+\begin{tabular}{l c c}
+\hline
 power supply			&$\pm 12V$	\\
 passband center frequency	&$10MHz$	\\
 bandwidth			&$300kHz$	\\
 input impedance			&$50\Omega$	\\
 ouptut impedance		&$50\Omega$	\\
 gain at center frequency	&$>60dB$	\\
+\hline
 \end{tabular}
 \label{labSpecs}
+\end{table}
+
+\subsection{BJT Characterization}
+
+Four npn 2N2904 BJTs were characterized using the Tektronix curve
+tracer and an HP LCR meter. The results are shown in table
+\ref{BJTcharacteristics}. The current amplification factors ($\beta$
+or $h_{fe}$) were taken with DC biasing close to their designed use;
+the actual $I_{C}-V_{CE}$ characteristic curves appear later,
+as the DC design is described.
+
+\begin{table}[ht]
+\centering
+\caption{Measured BJT Characteristics}
+\begin{tabular}{c|c|c|c|c}
+\hline\hline
+	&Q1	&Q2	&Q3	&Q4	\\
+\hline\hline
+$\beta$	&181	&191	&189	&189	\\
+$V_{A}$	&260V	&273V	&273V	&224V	\\
+$C_{CB}$\tablefootnote{measurement taken at $10MHz$}	&5.1pF	&5.19pF	&5.18pF	&5.23pF	\\
+$C_{BE}$&3.26pF	&3.28pF	&3.30pF	&3.24pF	\\ 
+\hline\hline
+\end{tabular}
+\label{BJTcharacteristics}
 \end{table}
 
 \subsection{Tank Circuits}
@@ -700,5 +753,11 @@ plot ph(v(out))-ph(v(in))
 write CBstage.txt db(v(output)/v(input)) ph(v(output))-ph(v(input))
 \end{verbatim}
 
+\subsection{MATLAB Script for $A_{v}(I_{EQ})$}
+\label{matlabScript}
+
+\begin{verbatim}
+PUT CODE HERE!
+\end{verbatim}
 
 \end{document}
