@@ -14,21 +14,33 @@ Rs in s 50
 Cc1 in e1 3.183uF
 Re1 e1 ee 21.8k
 Q1 c1 gnd e1 model1
-L1 c1 cc 4.2uH
-Cd1 c1 cc 55pF
-Rp1 c1 cc 30k 
+L1 c1 cc 3.0uH
+Cd1 c1 cc 80pF
+Rp1 c1 cc 21.7k 
 *
 *STAGE 2: COMMON EMITTER
-Cc2 c1 b2 13nF
-R1 cc b2 177.2k
-R2 b2 ee 96.6k
+Cc2 c1 b2 11.4nF
+R1 cc b2 378.9k
+R2 b2 ee 425.8k
 Q2 c2 b2 e2 model2
-Rex e2 e22 50
-Re2 e22 ee 6.25k
+Rex2 e2 e22 50
+Re2 e22 ee 10.5k
 Ce2 e22 gnd 25.5nF
 L2 c2 cc 4.2uH
-Cd2 c2 cc 58pF
-Rp2 c2 cc 30k
+Cd2 c2 cc 61.66pF
+Rp2 c2 cc 40.3k
+*
+*STAGE 3: COMMON EMITTER
+Cc3 c2 b3 11.4nF
+R3 cc b3 378.9k
+R4 b3 ee 425.8k
+Q3 c3 b3 e3 model3
+Rex3 e3 e33 50
+Re3 e33 ee 10.5k
+Ce3 e33 gnd 25.5nF
+L3 c3 cc 4.4uH
+Cd3 c3 cc 64.33pF
+Rp3 c3 cc 30.4k
 *
 *STAGE 4: COMMON COLLECTOR
 Cc4 c2 b4 13nF
@@ -49,19 +61,25 @@ Rload out gnd 999k
 * TS = transport saturation current
 * NF = forward mode ideality factor
 *
-.model model1 npn (BF=176 CJC=20pf CJE=20pf IS=1E-16 VAF=452V NF=1)
-.model model2 npn (BF=192 CJC=20pf CJE=20pf IS=1E-16 VAF=228V NF=1) ; CJC has large effect on CB gain and CC2 throughput
-.model model4 npn (BF=100 CJC=20pf CJE=20pf IS=1E-16 VAF=200V NF=1) ; model2 CJE has effect on CC2 throughput but not CB gain
+.model model1 npn (BF=181 CJC=5.1pf CJE=3.26pf IS=1E-16 VAF=260V NF=1)
+.model model2 npn (BF=191 CJC=5.19pf CJE=3.28pf IS=1E-16 VAF=273V NF=1) ; CJC has large effect on CB gain and CC2 throughput
+.model model3 npn (BF=189 CJC=5.18pf CJE=3.30pf IS=1E-16 VAF=273V NF=1)
+.model model4 npn (BF=189 CJC=5.23pf CJE=3.24pf IS=1E-16 VAF=224V NF=1) ; model2 CJE has effect on CC2 throughput but not CB gain
 *
 *OUTPUT CONTROL
 .control
 set filetype=ascii
+.op
 *ac dec 10 1Hz 1GHz
 ac dec 10 100kHz 1GHz
-*plot db(v(out)/v(in))
+plot db(v(out)/v(in))
 plot db(v(b2)/v(c1))
 plot db(v(c1)/v(in))
-plot db(b(c2)/v(b2))
+plot db(v(c2)/v(b2))
+plot db(v(b3)/v(c2))
+plot db(v(c3)/v(b3))
+plot db(v(b4)/v(c3))
+plot db(v(e4)/v(b4))
 *plot ph(v(out))-ph(v(in))
 write multiStage.txt db(v(out)/v(in)) ph(v(out))-ph(v(in))
 
