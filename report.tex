@@ -194,7 +194,7 @@ common-base is easy because the voltage is pinned at every node.
 
 \begin{equation}
 I_{EQ}=\frac{-V_{BE(on)}-V_{EE}}{R_{E}}
-\label{commonBaseIeq}
+\label{cbIeq}
 \end{equation}
 
 \begin{equation}
@@ -576,32 +576,37 @@ chosen to achieve desirable input resistance and voltage gain.
 
 
 It is clear that $R_{in}$ is strongly related to $r_{\pi}$ from
-equation \ref{commonBaseRin}. Substituting equation
-\ref{commonBaseRpi} for $r_{\pi}$ into equation \ref{commonBaseRin}
-yields
-
+equation \ref{commonBaseRin}. If one assumes that
+$r_{\pi}<<(\beta+1)R_{E}$, then the generic form fraction becomes one
+and the input resistance becomes
 \begin{equation*}
-R_{in}=\frac{-V_{th}R_{E}}{V_{BE(on)}+V_{EE}}
-\qquad\textrm{or}\qquad
-\left(R_{E}=\frac{R_{in}(-V_{BE(on)}-V_{EE})}{V_{th}}\right)
+R_{in}|_{\nicefrac{r_{\pi}}{(\beta+1)R_{E}}\rightarrow 0}
+=\frac{r_{\pi}}{\beta+1}
 \end{equation*}
 
-Using the specified value for $V_{EE}$ and $R_{in}$, and typical
-values for $V_{th}$ and $V_{BE(on)}$, the emitter resitance should be
-
+The value of $r_{\pi}$ varies depending on the quiescent operating
+point. To achieve an input resistance of $50\Omega$, the quiescent
+current $I_{EQ}$ must be chosen such that $r_{\pi}/\beta+1$ is 50.
+Luckily it is easy to design $I_{EQ}$ for the CB stage; equation
+\ref{cbIeq} shows that is is determined by $R_{E}$. Substituting
+equations \ref{rPi} and \ref{cbIeq} into the expression for $R_{in}$
+gives
 \begin{equation*}
-R_{E}=\frac{50\Omega(-0.7V+12V)}{0.0259V}=21.8k\Omega
+R_{in}=\frac{(\beta+1)V_{th}}{(\beta+1)I_{EQ}}=
+\frac{V_{th}}{I_{EQ}}=
+\frac{V_{th}}{-V_{BE(on)}-V_{EE}}R_{E}
 \end{equation*}
 
-With $R_{E}$, the quiescent current can be calculated with equation
-\ref{commonBaseIeq}; $I_{EQ}=0.52mA$.
-
-The first BJT was characterized and a DC load line drawn. Because all
-of the node voltages are pinned, the load line is vertical; $V_{CE}$
-is independent of $I_{EQ}$. It was found that
+By solving this expression, the designed value for $R_{E1}$ is
 \begin{equation*}
-\beta_{Q1}=176\qquad\qquad V_{AQ1}=452V
+R_{E1}=\frac{-0.7V+12V}{0.0259V}*50\Omega=21.814\,k\Omega
 \end{equation*}
+
+With $R_{E}$, the quiescent current is known from equation
+\ref{cbIeq}; $I_{EQ}=0.52mA$. Armed with this knowledge, the first
+BJT was characterized and a DC load line drawn. Because all of the
+node voltages are pinned, the load line is vertical; $V_{CE}$ is 
+independent of $I_{EQ}$.
 
 \begin{figure}[ht]
 	\centering
@@ -636,6 +641,10 @@ in appendix \ref{CBstageNetlist} and the results are shown in figure
 	\label{CBstageMagnitudePlot}
 \end{figure}
 
+The CB stage was assembled on the breadboard and tested for its
+frequency response. A load resistor of $12.5k\Omega$ was included.
+The results are shown in figure \ref{CBstageMagnitudePlot}.
+
 \subsection{Common-Emitter Stage}
 
 The common-emitter configuration provides the highest overall power
@@ -643,13 +652,17 @@ gain, compared to CB and CC. This makes it ideal for the middle
 stages. A single CE stage is shown in figure 
 \ref{commonEmitterStage}.
 
-The second BJT was characterized on the Tektronix Curve Tracer
-using a range of 20V and 2mA (the maximum swing would actually be
-24V). The i-v characteristics and the DC load line are shown in
-figure \ref{q2Characteristics}. It was found that
-\begin{equation*}
-\beta_{Q2}=192\qquad\textrm{and}\qquad V_{A(Q2)}=228V
-\end{equation*}
+The MATLAB analysis of $A_{v}(I_{EQ})$ in section
+\ref{gainVSquiescentCurrent} showed that the gain of a CE amplifier
+grows with increasing quiescent current up to a certain point. Based
+on this, $I_{EQ}$ was designed to be near 1 mA.
+
+The exact value for $I_{EQ}$ was chosen based on the closest curser
+position to 1 mA when the BJT was characterized on the Tektronix
+curve tracer. To allow for maximum swing between the $\pm12V$ rails,
+$V_{EQ}$ was chosen to be 12 V. The I-V characteristics and DC load
+line are shown in figure \ref{q2Characteristics}. The load line was
+drawn using the chosen Q-pt and a cutoff of 24 V.
 
 \begin{figure}[ht]
 	\centering
@@ -661,18 +674,11 @@ figure \ref{q2Characteristics}. It was found that
 	\label{q2Characteristics}
 \end{figure}
 
-The MATLAB analysis of $A_{v}(I_{EQ})$ in section
-\ref{gainVSquiescentCurrent} showed that the gain of a CE amplifier
-grows proportionally to the quiescent current. Based on this, a
-relatively large quiescent current was chosen, $1.92mA$.
-
-The Q-point should lie at exactly the middle of the two supplies to
-allow the maximum possible voltage swing; so $V_{CEQ}=12V$. Putting
-the desired Q-pt. into equation \ref{ceDCloadEquation} determined
-the required emitter resistance.
+Putting the desired Q-pt. into equation \ref{ceDCloadEquation}
+determined the required emitter resistance.
 \begin{equation*}
-R_{E2}=\frac{V_{CC}-V_{EE}-V_{CEQ}}{I_{EQ}}=\frac{12V}{1.92mA}
-=6.25k\Omega
+R_{E2}=\frac{V_{CC}-V_{EE}-V_{CEQ}}{I_{EQ}}=\frac{12V}{1.14mA}
+=10.5k\,\Omega
 \end{equation*}
 
 The value of $R_{TH}$ should be at least 10 times the emitter
@@ -680,7 +686,7 @@ resistance to ensure a stiff base bias. \footnote{A stiff base means
 that $R_{1}$ and $R_{2}$ behave like a voltage divider, with 
 negligible current being diverted into the base.} Therefore,
 \begin{equation*}
-R_{TH}=62.5k\Omega=R_{1}||R_{2}
+R_{TH}=105\,k\Omega=R_{1}||R_{2}
 \end{equation*}
 
 If $V_{CEQ}$ is 12V, then the base must be biased at +0.7V to forward
@@ -693,7 +699,7 @@ divider between $V_{CC}$ and $V_{EE}$ to achieve this.
 Solving the voltage divider equation with the definintion of $R_{TH}$
 gives us values for $R_{1}$ and $R_{2}$.
 \begin{equation*}
-R_{1}=177.2k\Omega\qquad\qquad R_{2}=96.6k\Omega
+R_{1}=198.4\,k\Omega\qquad\qquad R_{2}=223.0\,k\Omega
 \end{equation*}
 
 \section{Appendices}
