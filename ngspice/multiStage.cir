@@ -2,6 +2,7 @@
 * Shared nodes:  gnd, cc (+12V), ee (-12V), s, in, out
 * Stage 1 nodes: e1, c1
 * Stage 2 nodes: b2, e2, e22, c2
+* Stage 3 nodes: b3, e3, e33, c3
 * Stage 4 nodes: b4, e4
 *
 *POWER SUPPLIES AND SOURCE
@@ -43,15 +44,15 @@ Cd3 c3 cc 64.33pF
 Rp3 c3 cc 30.4k
 *
 *STAGE 4: COMMON COLLECTOR
-Cc4 c2 b4 13nF
-R5 cc b4 412k
-R6 b4 ee 462.9k
+Cc4 c3 b4 13nF
+R5 cc b4 833k
+R6 b4 ee 936.2k
 Q4 cc b4 e4 model4
-Re4 e4 ee 21.8k
+Re4 e4 ee 23.2k
 *
 *OUTPUT
-Cc5 e4 out 3.18nF
-Rload out gnd 999k
+Cc5 e4 out 3.18iuF
+Rload out gnd 100k
 *
 * .model <name> <type> (par1=value1 par2=value2 ...)
 * VAF = forward Early voltage
@@ -73,13 +74,6 @@ set filetype=ascii
 *ac dec 10 1Hz 1GHz
 ac dec 10 100kHz 1GHz
 plot db(v(out)/v(in))
-plot db(v(b2)/v(c1))
-plot db(v(c1)/v(in))
-plot db(v(c2)/v(b2))
-plot db(v(b3)/v(c2))
-plot db(v(c3)/v(b3))
-plot db(v(b4)/v(c3))
-plot db(v(e4)/v(b4))
-*plot ph(v(out))-ph(v(in))
+plot ph(v(out))-ph(v(in))
 write multiStage.txt db(v(out)/v(in)) ph(v(out))-ph(v(in))
 

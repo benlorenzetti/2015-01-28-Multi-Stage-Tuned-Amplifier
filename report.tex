@@ -419,6 +419,78 @@ R_{in(CE)}=(1+\beta)R_{EX}+r_{\pi}
 \label{ceRin}
 \end{equation}
 
+\subsection{Common-Collector Broadband Amplifier}
+
+When the BJT is configured such that the collector is common to both
+input and output, the amplifier acts like a voltage buffer; providing
+current gain as necessary and having low output impedance. The
+common-collector circuit is shown in figure
+\ref{commonCollectorAmplifier}. The right pane is the AC equivalent
+circuit. The DC equivalent circuit is identical to that of the CE
+amplifier, shown in the left pane of figure
+\ref{commonEmitterEquivalentCircuits}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=.75\textwidth]
+		{figures/commonCollectorAmplifier.png}
+	\caption{
+		Basic circuit for a common-collector broadband amplifier
+		(left) and its AC equivalent circuit (right).
+	}
+	\label{commonCollectorAmplifier}
+\end{figure}
+
+The small-signal voltage gain should be close to unity, but this can
+be shown by taking KCL at the emitter node in the AC model in figure
+\ref{commonCollectorAmplifier}.
+\begin{equation*}
+\frac{v_{o}-v_{s}}{r_{\pi}}+\frac{v_{o}}{R_{E}}+\frac{v_{o}}{R_{L}}
+-g_{m}(v_{s}-v_{o})=0
+\end{equation*}
+
+Multiplying through by $r_{\pi}$ and separating variables cleans this
+up somewhat,
+\begin{equation*}
+v_{o}\left[1+\beta+\frac{r_{\pi}}{R_{E}}+\frac{r_{\pi}}{R_{L}}\right]
+=v_{s}[1+\beta]
+\end{equation*}
+
+The coefficients must be prepared for inversion.
+\begin{equation*}
+v_{o}\left[\frac{(1+\beta)R_{E}R_{L}+r_{\pi}(R_{E}+R_{L})}
+{R_{E}R_{L}}\right]=
+v_{s}[1+\beta]
+\end{equation*}
+
+So the voltage gain of the common-collector is
+\begin{equation*}
+A_{v}=\frac{(1+\beta)R_{E}R_{L}}
+{(1+\beta)R_{E}R_{L}+r_{\pi}(R_{E}+R_{L})}
+\end{equation*}
+
+This can be rewritten in generic transfer form.
+\begin{equation}
+A_{v(CC)}=\frac{1}{1+\nicefrac{r_{\pi}}{(1+\beta)(R_{E}||R_{L})}}
+\label{ccAv}
+\end{equation}
+
+The voltage gain is observed to be $\nicefrac{1}{2}$ when the load
+resistance is equal to the output impedance. This is the case if the
+ratio term in the generic form equation is unity. Mathematically,
+this is expressed as
+\begin{equation*}
+\frac{r_{\pi}}{(\beta+1)(R_{E}||R_{o})}=1
+\end{equation*}
+
+Substituting equation \ref{rPi} in place of $r_{\pi}$ and assuming
+that $R_{E}>>R_{o}$ yields a surprisingly simple equation for output
+impedance.
+\begin{equation}
+R_{o(CC)}=\frac{V_{thermal}}{I_{EQ}}
+\label{ccRo}
+\end{equation}
+
 \subsection{Voltage Gain and $I_{EQ}$}
 \label{gainVSquiescentCurrent}
 
@@ -521,7 +593,7 @@ $C_{BE}$&3.26pF	&3.28pF	&3.30pF	&3.24pF	\\
 \label{BJTcharacteristics}
 \end{table}
 
-\subsection{Tank Circuits}
+\subsection{Tank Circuit Characterization}
 
 Two inductors were wound with \char`\~22 turns. Their inductance and quality
 were measured using a Hewlett-Packard 4342A Q Meter. An appropriate
@@ -539,21 +611,21 @@ Q Meter. The methods for these measurements are attached in appendix
 \begin{table}[ht]
 \centering
 \caption{Tank Circuit Design and Measured Characteristics}
-\begin{tabular}{c|c|c|c}
+\begin{tabular}{c|c|c|c|c}
 \hline\hline
-Parameter	&1		&2	&Description	\\
+Parameter	&1		&2		&3		&Description	\\
 \hline\hline
-$L$		&$4.2\mu H$	&	&measured inductor	\\
-$Q_{L}$		&		&	&on HP Q Meter	\\
+$L$		&$3.0\mu H$	&$4.2\mu H$	&$4.4\mu H$	&measured inductor	\\
+$Q_{L}$		&250		&90		&65		&on HP Q Meter	\\
 \hline
-$C_{target}$	&$90$		&	&from eq. \ref{resonantFrequencyEq}	\\
-$C_{fixed}$	&$33pF$		&	&nominal value		\\
-$C_{trim}$	&$5-35pF$	&	&approx. range		\\
+$C_{target}$	&84.0pF		&60.3pF		&57.6pF		&from eq. \ref{resonantFrequencyEq}	\\
+$C_{fixed}$	&55.6pF		&33pF		&34.1pF		&nominal value		\\
+$C_{trim}$	&27.2pF		&31pF		&30.1pF		&approx		\\
 \hline
-$C_{d}$		&$55pF$		&	&measured LC circuit	\\
-$f_{0}$		&$13.3MHz$	&	&on HP Q Meter,		\\
-$Q$		&$85.5$		&	&see \ref{qMeter}	\\
-$R_{p}$		&$30k\Omega$	&	&from eq. \ref{parallelRLCequation}	\\
+$C_{d}$		&80pF		&61.7pF		&64.3pF		&measured LC circuit	\\
+$f_{0}$		&12.8MHz	&13.9MHz	&13.8MHz	&on HP Q Meter,		\\
+$Q$		&90		&110		&80	&see \ref{qMeter}	\\
+$R_{p}$		&$21.7k\Omega$	&$40.3k\Omega$	&$30.4k\Omega$	&from eq. \ref{parallelRLCequation}	\\
 \hline\hline
 \end{tabular}
 \label{tankCircuitCharacteristics}
@@ -777,6 +849,43 @@ the Q-pt curser for Q3 was identical to Q2. Therefore, the discrete
 resistors and capacitors needed for stage 3 are the same as stage 2.
 
 \subsection{Common-Collector Stage IV}
+
+The Q-pt. of the common-collector stage must be chosen to achieve the
+specified output impedance of 50 ohms. The relationship between the
+two was found in equation \ref{ccRo}.
+\begin{equation*}
+50\,\Omega=R_{o}=\frac{V_{th}}{I_{EQ}}
+\qquad\rightarrow\qquad I_{EQ(Q4)}=5.2\,mA
+\end{equation*}
+
+The quiescent collector-emitter voltage is chosen to be 12 V to split
+the power supplies evenly. Ohms law is used to calculate an emitter
+resistance that will limit $I_{EQ}$ given a potential difference of
+12 V.
+\begin{equation*}
+R_{E4}=\frac{V_{CC}-V_{EE}-V_{CEQ}}{I_{EQ}}=23.2k\,\Omega
+\end{equation*}
+
+There is not really a point in plotting a load line because the load
+on the collector is zero. Nevertheless, it has been plotted on the
+I-V characteristics shown in figure \ref{q4Characteristics}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]
+		{measurements/q4Characteristics}
+	\caption{
+		Q4 Current-Voltage Characteristics and DC Load Line
+	}
+	\label{q4Characteristics}
+\end{figure}
+
+To hold a stiffly biased base at 0.7 V, the thevenin equivalent
+resistance should be $\nicefrac{1}{10}$ the reflected base-emitter
+resistance.
+\begin{equation*}
+R_{TH}=0.1(\beta+1)R_{E}=0.1(190)(23.2k)=440.8\,k\Omega
+\end{equation*}
 
 \section{Appendices}
 
