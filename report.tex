@@ -269,7 +269,7 @@ The DC equivalent circuit is shown in the left pane of figure
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.4\textwidth]
+	\includegraphics[width=0.35\textwidth]
 		{figures/commonEmitterAmplifier.png}
 	\caption{
 		Broadband Common-Emitter Stage
@@ -639,7 +639,7 @@ chosen to achieve desirable input resistance and voltage gain.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.25\textwidth]
+	\includegraphics[width=0.23\textwidth]
 		{figures/commonBaseStage}
 	\caption{
 		Common-base stage with SPICE netlist labels.
@@ -706,7 +706,7 @@ in appendix \ref{CBstageNetlist} and the results are shown in figure
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]
+	\includegraphics[width=0.5\textwidth]
 		{ngspice/CBstage.eps}
 	\caption{
 		Magnitude Gain of Common-Base Stage, in dB
@@ -728,7 +728,7 @@ stages. A single CE stage is shown in figure
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.25\textwidth]
+	\includegraphics[width=0.35\textwidth]
 		{figures/commonEmitterStage}
 	\caption{
 		Common-emitter stage with SPICE netlist labels.
@@ -750,7 +750,7 @@ drawn using the chosen Q-pt and a cutoff of 24 V.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]
+	\includegraphics[width=0.6\textwidth]
 		{measurements/q2Characteristics}
 	\caption{
 		Q2 Current-Voltage Characteristics and DC Load Line
@@ -835,7 +835,7 @@ The I-V characteristics for Q3 are shown in figure
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]
+	\includegraphics[width=0.6\textwidth]
 		{measurements/q3Characteristics}
 	\caption{
 		Q3 Current-Voltage Characteristics and DC Load Line
@@ -872,7 +872,7 @@ I-V characteristics shown in figure \ref{q4Characteristics}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]
+	\includegraphics[width=0.6\textwidth]
 		{measurements/q4Characteristics}
 	\caption{
 		Q4 Current-Voltage Characteristics and DC Load Line
@@ -885,6 +885,20 @@ resistance should be $\nicefrac{1}{10}$ the reflected base-emitter
 resistance.
 \begin{equation*}
 R_{TH}=0.1(\beta+1)R_{E}=0.1(190)(23.2k)=440.8\,k\Omega
+\end{equation*}
+
+Solving the thevenin resistance equation and a voltage divider for
++0.7 volts simultaneously designates values for $R_{5}$ and $R_{6}$.
+\begin{equation*}
+R_{5}=833\,k\Omega\qquad\textrm{and}\qquad R_{6}=936.2\,k\Omega
+\end{equation*}
+
+It is probably safe to copy coupling capacitor values from elsewhere
+in the circuit. The output coupling should be identical to the input
+coupling because they are both look out on as little as 50 ohms external
+impedance.
+\begin{equation*}
+C_{c4}=11.4nF\qquad\textrm{and}\qquad C_{c5}=C_{c1}=3.18\,\mu F
 \end{equation*}
 
 \section{Appendices}
