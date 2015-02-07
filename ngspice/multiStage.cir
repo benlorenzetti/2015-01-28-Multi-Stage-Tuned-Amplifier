@@ -12,7 +12,8 @@ Vs s gnd dc 0V ac 10mV
 Rs in s 50
 *
 *STAGE 1; COMMON BASE
-Cc1 in e1 3.183uF
+*Cc1 in e1 3.183uF
+Cc1 in e1 320nF
 Re1 e1 ee 21.8k
 Q1 c1 gnd e1 model1
 L1 c1 cc 3.0uH
@@ -28,7 +29,8 @@ Rex2 e2 e22 50
 Re2 e22 ee 10.5k
 Ce2 e22 gnd 25.5nF
 L2 c2 cc 4.2uH
-Cd2 c2 cc 61.66pF
+*Cd2 c2 cc 61.66pF
+*Cremovefixed c2 cc 31pF
 Rp2 c2 cc 40.3k
 *
 *STAGE 3: COMMON EMITTER

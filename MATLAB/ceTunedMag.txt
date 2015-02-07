@@ -1,0 +1,39 @@
+clear
+% Electronics II Laboratory, Project Two: Multi-stage Tuned Amplifier
+% Ben Lorenzetti
+% 01/25/2015
+%
+% High Frequency Voltage Gain for Tuned Common-Emitter Amplifiers;
+%
+% BJT Parameters and Typical Discrete Components
+Rp = 30e3;
+Cp = 63.6e-12;
+Lp = 4e-6;
+Rl =    10e3;
+Rex =   50;
+alpha = 0.99;
+Vth =   0.0259;
+Ieq =   1e-3;
+%
+% Calculate Av as a function of frequency
+minFreq = 1e3;
+maxFreq = 1e9;
+pointsPerDecade = 100;
+dataPoints = pointsPerDecade*log10(maxFreq/minFreq);
+logBase = 10^(1/pointsPerDecade);
+for i = 1 : dataPoints + 1
+    freq(i) = minFreq * logBase^(i-1);
+    omega(i) = 2*pi*freq(i);
+    Bc(i) = omega(i)*Cp - 1/(omega(i)*Lp); % susceptanceB = 1/reactanceX
+    Zc(i) = Rp/sqrt(1 + Rp^2*Bc(i)^2);
+    Av(i) = (alpha/Rex)*((Zc(i)*Rl)/(Zc(i)+Rl))*(1+Vth/(Rex*Ieq))^-1;
+    dB(i) = 20*log10(Av(i));
+end
+%
+% Plot Results
+figure
+semilogx(freq, dB);
+xlabel('Frequency (Hz)');
+ylabel('|Av| (dB)');
+title('Magnitude Gain of Tuned CE Amplifier');
+%

@@ -1,0 +1,35 @@
+clear
+% Electronics II Laboratory, Project Two: Multi-stage Tuned Amplifier
+% Ben Lorenzetti
+% 01/25/2015
+%
+% Midband Voltage Gain for CB and CE Small Signal, Broadband Amplifiers;
+%               As a Function of Q-pt. Emitter Current
+%     (small signal broadband--i.e. with purely resistive AC load)
+%
+% BJT Parameters and Typical Discrete Components
+Rc =    10e3;
+Rl =    10e3;
+Rex =   50;
+alpha = 0.99;
+Vth =   0.0259;
+Req =   (Rc*Rl)/(Rc+Rl);
+%
+% Calculate Av as a function of IEQ
+minIEQ = 0.0001;
+maxIEQ = 0.002;
+dataPoints = 100;
+for i = 1 : dataPoints + 1
+    IEQ(i) = minIEQ + ((maxIEQ-minIEQ)/dataPoints) * (i-1);
+    CBgain(i) = (alpha*Req*IEQ(i)) / Vth;
+    CEgain(i) = ((Req/Rex)*alpha) / (1+Vth/(Rex*IEQ(i)));
+end
+%
+% Plot Results
+figure
+plot((IEQ*1000), CBgain, '--', (IEQ*1000), CEgain, ':');
+xlabel('IEQ (mA)');
+ylabel('|Av|');
+legend('Common Base Voltage Gain', 'Common Emitter Voltage Gain','Location','Northwest');
+axis([0,2,0,500]);
+%
