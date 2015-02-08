@@ -6,16 +6,18 @@
 \contentsline {subsection}{\numberline {3.3}Common-Emitter Broadband Amplifier}{5}
 \contentsline {subsection}{\numberline {3.4}Common-Collector Broadband Amplifier}{8}
 \contentsline {subsection}{\numberline {3.5}Voltage Gain and $I_{EQ}$}{9}
-\contentsline {subsection}{\numberline {3.6}Coupling Capacitors}{9}
-\contentsline {section}{\numberline {4}Design and Simulation}{9}
-\contentsline {subsection}{\numberline {4.1}Specifications}{9}
+\contentsline {subsection}{\numberline {3.6}Tuning a Broadband Amplifier}{9}
+\contentsline {subsection}{\numberline {3.7}Coupling Capacitors}{10}
+\contentsline {section}{\numberline {4}Design and Simulation}{10}
+\contentsline {subsection}{\numberline {4.1}Specifications}{10}
 \contentsline {subsection}{\numberline {4.2}BJT Characterization}{10}
-\contentsline {subsection}{\numberline {4.3}Tank Circuit Characterization}{10}
-\contentsline {subsection}{\numberline {4.4}Common-Base Stage I}{10}
-\contentsline {subsection}{\numberline {4.5}Common-Emitter Stage II}{12}
+\contentsline {subsection}{\numberline {4.3}Tank Circuit Characterization}{11}
+\contentsline {subsection}{\numberline {4.4}Common-Base Stage I}{12}
+\contentsline {subsection}{\numberline {4.5}Common-Emitter Stage II}{13}
 \contentsline {subsection}{\numberline {4.6}Common-Emitter Stage III}{14}
 \contentsline {subsection}{\numberline {4.7}Common-Collector Stage IV}{15}
 \contentsline {section}{\numberline {5}Appendices}{16}
 \contentsline {subsection}{\numberline {5.1}HP 4342A Q Meter}{16}
 \contentsline {subsection}{\numberline {5.2}Common-Base SPICE Netlist}{21}
-\contentsline {subsection}{\numberline {5.3}MATLAB Script for $A_{v}(I_{EQ})$}{21}
+\contentsline {subsection}{\numberline {5.3}MATLAB Script for $A_{v}(I_{EQ})$}{22}
+\contentsline {subsection}{\numberline {5.4}MATLAB Script for $A_{v(CE)}(f)$}{23}

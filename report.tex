@@ -97,6 +97,7 @@ where $Z_{C}\rightarrow \infty$.
 \section{Theory}
 
 \subsection{Tank Circuits}
+\label{tankCircuits}
 
 No inductor is ideal. The quality of an inductor is defined by
 the ratio of the impedance and resistance of the discrete element.
@@ -137,17 +138,22 @@ The self resonance frequency occurs when the net impedance is
 greatest. Applying Kirchoff's current law to the parallel model...
 
 \begin{equation*}
-|I_{in}|=\frac{|V_{in}|}
-{\sqrt{(j\omega L+1/j\omega C)^{2}+R_{P}^{2}}}
+I_{in}=V_{in}\left[
+\frac{1}{R}+\frac{-j}{\omega L}+j\omega C\right]
+\end{equation*}
+
+\begin{equation*}
+Z_{in}=\frac{1}{\nicefrac{1}{R}+j(\omega C-\nicefrac{1}{\omega L}}
 \end{equation*}
 
 \begin{equation}
-|Z_{L}|=\sqrt{R_{P}^{2}-\left(\omega L-\frac{1}{\omega C}\right)^{2}}
+|Z_{L}|=\frac{R}{\sqrt{1+R^{2}(\omega C-\nicefrac{1}{\omega L}}}
+\label{tankImpedance}
 \end{equation}
 
 One can see that $Z_{L}$ will reach its peak when:
 \begin{equation*}
-\left(\omega L-\frac{1}{\omega C}\right)=0
+\left(\omega C-\frac{1}{\omega L}\right)=0
 \label{resonantFrequencyEq}
 \end{equation*}
 
@@ -515,10 +521,8 @@ of DC biasing. The MATLAB script used to generate plot
 
 \begin{figure}[ht]
 	\centering
-\begin{comment}
 	\includegraphics[width=0.5\textwidth]
-		{figures/gainQptRelation}
-\end{comment}
+		{MATLAB/AvQptRelationship}
 	\caption{
 		Relationship Between AC Voltage Gain and DC Biasing
 		for CB and CE Amplifier
@@ -526,6 +530,31 @@ of DC biasing. The MATLAB script used to generate plot
 	\label{gainQptRelation}
 \end{figure}
 
+\subsection{Tuning a Broadband Amplifier}
+
+The broadband amplifier stages described above have a wide bandpass
+range in the midband. For the CB and CE configurations, the magnitude
+gain was strongly dependent on the collector and load resistance. If
+the collector resistance could be modulated based on frequency, then
+a tuned amplifier could be built.
+
+One way to modulate an impedance element is replacing it with a tank
+circuit, which are described in section \ref{tankCircuits}.
+
+The frequency response of such a tuned amplifier can be modeled by
+substituting the expression for parallel RLC impedance into the gain
+equations for CB and CE amplifiers. Equation \ref{tankImpedance} was
+substituted into equation \ref{ceAv} and the result was plotted over
+a range of frequencies in MATLAB. The result of this simulation is
+shown in figure \ref{ceTunedMag}. The MATLAB script is included
+in appendix \ref{ceTunedMATLAB}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{MATLAB/ceTunedMag}
+	\caption{Magnitude Gain of CE Amplifier with 10 MHz Tuned Tank}
+	\label{ceTunedMag}
+\end{figure}
 
 \subsection{Coupling Capacitors}
 
@@ -962,11 +991,92 @@ plot ph(v(out))-ph(v(in))
 write CBstage.txt db(v(output)/v(input)) ph(v(output))-ph(v(input))
 \end{verbatim}
 
+\pagebreak
 \subsection{MATLAB Script for $A_{v}(I_{EQ})$}
 \label{matlabScript}
 
 \begin{verbatim}
-PUT CODE HERE!
+clear
+% Electronics II Laboratory, Project Two: Multi-stage Tuned Amplifier
+% Ben Lorenzetti
+% 01/25/2015
+%
+% Midband Voltage Gain for CB and CE Small Signal, Broadband Amplifiers;
+%               As a Function of Q-pt. Emitter Current
+%     (small signal broadband--i.e. with purely resistive AC load)
+%
+% BJT Parameters and Typical Discrete Components
+Rc =    10e3;
+Rl =    10e3;
+Rex =   50;
+alpha = 0.99;
+Vth =   0.0259;
+Req =   (Rc*Rl)/(Rc+Rl);
+%
+% Calculate Av as a function of IEQ
+minIEQ = 0.0001;
+maxIEQ = 0.002;
+dataPoints = 100;
+for i = 1 : dataPoints + 1
+    IEQ(i) = minIEQ + ((maxIEQ-minIEQ)/dataPoints) * (i-1);
+    CBgain(i) = (alpha*Req*IEQ(i)) / Vth;
+    CEgain(i) = ((Req/Rex)*alpha) / (1+Vth/(Rex*IEQ(i)));
+end
+%
+% Plot Results
+figure
+plot((IEQ*1000), CBgain, '--', (IEQ*1000), CEgain, ':');
+xlabel('IEQ (mA)');
+ylabel('|Av|');
+legend('Common Base Voltage Gain', 'Common Emitter Voltage Gain','Location','Northwest');
+axis([0,2,0,500]);
+%
+\end{verbatim}
+
+\pagebreak
+\subsection{MATLAB Script for $A_{v(CE)}(f)$}
+\label{ceTunedMATLAB}
+
+\begin{verbatim}
+clear
+% Electronics II Laboratory, Project Two: Multi-stage Tuned Amplifier
+% Ben Lorenzetti
+% 01/25/2015
+%
+% High Frequency Voltage Gain for Tuned Common-Emitter Amplifiers;
+%
+% BJT Parameters and Typical Discrete Components
+Rp = 30e3;
+Cp = 63.6e-12;
+Lp = 4e-6;
+Rl =    10e3;
+Rex =   50;
+alpha = 0.99;
+Vth =   0.0259;
+Ieq =   1e-3;
+%
+% Calculate Av as a function of frequency
+minFreq = 1e3;
+maxFreq = 1e9;
+pointsPerDecade = 100;
+dataPoints = pointsPerDecade*log10(maxFreq/minFreq);
+logBase = 10^(1/pointsPerDecade);
+for i = 1 : dataPoints + 1
+    freq(i) = minFreq * logBase^(i-1);
+    omega(i) = 2*pi*freq(i);
+    Bc(i) = omega(i)*Cp - 1/(omega(i)*Lp); % susceptanceB = 1/reactanceX
+    Zc(i) = Rp/sqrt(1 + Rp^2*Bc(i)^2);
+    Av(i) = (alpha/Rex)*((Zc(i)*Rl)/(Zc(i)+Rl))*(1+Vth/(Rex*Ieq))^-1;
+    dB(i) = 20*log10(Av(i));
+end
+%
+% Plot Results
+figure
+semilogx(freq, dB);
+xlabel('Frequency (Hz)');
+ylabel('|Av| (dB)');
+title('Magnitude Gain of Tuned CE Amplifier');
+%
 \end{verbatim}
 
 \end{document}
