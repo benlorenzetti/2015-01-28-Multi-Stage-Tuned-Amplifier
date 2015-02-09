@@ -735,8 +735,8 @@ in appendix \ref{CBstageNetlist} and the results are shown in figure
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.5\textwidth]
-		{ngspice/CBstage.eps}
+	\includegraphics[width=0.75\textwidth]
+		{mathGL/cbStage.eps}
 	\caption{
 		Magnitude Gain of Common-Base Stage, in dB
 	}
@@ -835,22 +835,25 @@ From equation \ref{couplingCapacitors} and using $R_{in2}$,
 C_{C2}\geq 11.4\,nF
 \end{equation*}
 
-At this point, all of the discrete components for the CB stage have
+At this point, all of the discrete components for this CE stage have
 been determined. A SPICE simulation was performed to check the
-performance of the stage. For a load value, the input resistance of
-the first common emitter stage was used. The netlist used is included
-in appendix \ref{CBstageNetlist} and the results are shown in figure
-\ref{CBstageMagnitudePlot}.
+performance of the stage. The netlist used is included
+in appendix \ref{CEstageNetlist} and the results are shown in figure
+\ref{CEstageMagnitudePlot}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]
-		{ngspice/CBstage.eps}
+	\includegraphics[width=0.75\textwidth]
+		{mathGL/ceStage.eps}
 	\caption{
-		Magnitude Gain of Common-Base Stage, in dB
+		Magnitude Gain of Common-Emitter Stage, in dB
 	}
-	\label{CBstageMagnitudePlot}
+	\label{CEstageMagnitudePlot}
 \end{figure}
+
+The CE stage was assembled on the breadboard and tested for its
+frequency response. The results are superimposed on the graph of the
+SPICE simulation in figure \ref{CEstageMagnitudePlot}.
 
 
 \subsection{Common-Emitter Stage III}
@@ -930,6 +933,47 @@ impedance.
 C_{c4}=11.4nF\qquad\textrm{and}\qquad C_{c5}=C_{c1}=3.18\,\mu F
 \end{equation*}
 
+\subsection{Passive Components Summary Table}
+
+In the preceeding sections, the values for biasing resistors and
+coupling capacitors were designed for the entire circuit. Their
+actual values are summarized together in table
+\ref{passiveComponents}.
+
+\begin{table}[ht]
+\centering
+\caption{Summary of Passive Component Values}
+\begin{tabular}{c|c|c|c}
+\hline\hline
+Stage	&Component	&Designed Value	&Measured Value	\\
+\hline\hline
+1		&$C_{C1}$	&3.18 $\mu F$	&3.19 $\mu F$	\\
+		&$R_{E1}$	&21.8 $k\Omega$	&19.2 $k\Omega$	\\
+\hline
+		&$C_{C2}$	&11.4 $nF$		&1.7 $nF$		\\
+		&$R_{1}$		&379 $k\Omega$	&385 $k\Omega$	\\
+2		&$R_{2}$		&426 $k\Omega$	&465 $k\Omega$	\\
+		&$R_{EX2}$	&50 $\Omega$	&46.5 $\Omega$	\\
+		&$R_{E2}$	&10.5 $k\Omega$	&9.58 $k\Omega$	\\
+		&$C_{E2}$	&25.5 $nF$		&26.5 $nF$		\\
+\hline
+		&$C_{C3}$	&11.4 $nF$		&14.3 $nF$		\\
+		&$R_{3}$		&379 $k\Omega$	&387 $k\Omega$	\\
+3		&$R_{4}$		&426 $k\Omega$	&483 $k\Omega$	\\
+		&$R_{EX3}$	&50 $\Omega$	&46.45 $\Omega$	\\
+		&$R_{E3}$	&10.5 $k\Omega$	&9.75 $k\Omega$	\\
+		&$C_{E3}$	&25.5 $nF$		&25.8 $nF$		\\
+\hline
+		&$C_{C4}$	&11.4 $nF$		&14.6 $nF$		\\
+		&$R_{5}$		&833 $k\Omega$	&823 $k\Omega$	\\
+4		&$R_{6}$		&936 $k\Omega$	&991 $k\Omega$	\\
+		&$R_{E4}$	&23.2 $k\Omega$	&20.8 $k\Omega$	\\
+		&$C_{C5}$	&3.18 $\mu F$	&320 $nF$		\\
+\hline\hline
+\end{tabular}
+\label{passiveComponents}
+\end{table}
+
 \section{Appendices}
 
 \subsection{HP 4342A Q Meter}
@@ -964,14 +1008,14 @@ Vcc cc gnd dc 12V ac 0V
 Vee ee gnd dc -12V ac 0V
 Vs s gnd dc 0V ac 10mV
 Rs in s 50
-Cc1 in e1 3.183uF
-Re1 e1 ee 21.8k
+Cc1 in e1 3.19uF
+Re1 e1 ee 19.2k
 Q1 c1 gnd e1 model1
-L1 c1 cc 4.2uH
-Cd1 c1 cc 55pF
-Rp1 c1 cc 2.18k
-Cc2 c1 out 3.183uF
-Rld out gnd 9999k
+L1 c1 cc 3.0uH
+Cd1 c1 cc 80pF
+Rp1 c1 cc 21.7k
+Cc2 c1 out 14.7nF
+Rld out gnd 12.25k
 
 * .model <name> <type> (par1=value1 par2=value2 ...)
 * VAF = forward Early voltage
@@ -981,14 +1025,58 @@ Rld out gnd 9999k
 * TS = transport saturation current
 * NF = forward mode ideality factor
 
-.model model1 npn (BF=176 CJC=20pf CJE=20pf IS=1E-16 VAF=452V NF=1)
+.model model1 npn (BF=176 CJC=3.26pf CJE=5.1pf IS=1E-16 VAF=452V NF=1)
 
 .control
 set filetype=ascii
 ac dec 10 1Hz 1GHz
-plot db(v(out)/v(in))
-plot ph(v(out))-ph(v(in))
-write CBstage.txt db(v(output)/v(input)) ph(v(output))-ph(v(input))
+plot db(v(out)/v(s))
+plot ph(v(out))-ph(v(s))
+write CBstage.txt db(v(out)/v(s)) ph(v(out))-ph(v(s))
+\end{verbatim}
+
+\pagebreak
+\subsection{Common-Emitter SPICE Netlist}
+\label{CEstageNetlist}
+
+\begin{verbatim}
+*** CEstage.cir ***
+* Nodes:
+* gnd, cc (+12V), ee (-12V), s, in, b2, e2, e22, c2, out
+
+Vcc cc gnd dc 12V ac 0V
+Vee ee gnd dc -12V ac 0V
+Vs s gnd dc 0V ac 10mV
+Rs in s 50
+Cc2 in b2 14.7nF
+R1 cc b2 384.7k
+R2 b2 ee 465.2k
+Q2 c2 b2 e2 model2
+Rex e2 e22 46.5
+Re2 e22 ee 9.58k
+Ce2 e22 gnd 14.7nF
+L2 c2 cc 4.2uH
+Cd2 c2 cc 61.66pF
+Rp2 c2 cc 40.3k
+Cc3 c2 out 14.3nF
+Rld out gnd 12.5k
+
+* .model <name> <type> (par1=value1 par2=value2 ...)
+* VAF = forward Early voltage
+* BF = forward beta; forward common-emitter gain
+* CJE = base-emitter zero-bias junction capacitance
+* CJC = base-collector zero-bias junction capacitance
+* TS = transport saturation current
+* NF = forward mode ideality factor
+
+.model model2 npn (BF=192 CJC=3.28pf CJE=5.18pf IS=1E-16 VAF=228V NF=1)
+
+.control
+set filetype=ascii
+ac dec 10 1Hz 1GHz
+plot db(v(out)/v(s))
+plot ph(v(out))-ph(v(s))
+write CEstage.txt db(v(out)/v(s)) ph(v(out))-ph(v(s))
 \end{verbatim}
 
 \pagebreak

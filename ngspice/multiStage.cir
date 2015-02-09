@@ -30,7 +30,7 @@ Re2 e22 ee 10.5k
 Ce2 e22 gnd 25.5nF
 L2 c2 cc 4.2uH
 *Cd2 c2 cc 61.66pF
-*Cremovefixed c2 cc 31pF
+Cremovefixed c2 cc 31pF
 Rp2 c2 cc 40.3k
 *
 *STAGE 3: COMMON EMITTER
@@ -53,7 +53,7 @@ Q4 cc b4 e4 model4
 Re4 e4 ee 23.2k
 *
 *OUTPUT
-Cc5 e4 out 3.18iuF
+Cc5 e4 out 3.18uF
 Rload out gnd 100k
 *
 * .model <name> <type> (par1=value1 par2=value2 ...)
@@ -72,9 +72,7 @@ Rload out gnd 100k
 *OUTPUT CONTROL
 .control
 set filetype=ascii
-.op
-*ac dec 10 1Hz 1GHz
-ac dec 10 100kHz 1GHz
+ac dec 10 10kHz 1GHz
 plot db(v(out)/v(in))
 plot ph(v(out))-ph(v(in))
 write multiStage.txt db(v(out)/v(in)) ph(v(out))-ph(v(in))

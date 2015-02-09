@@ -6,13 +6,13 @@ Vcc cc gnd dc 12V ac 0V
 Vee ee gnd dc -12V ac 0V
 Vs s gnd dc 0V ac 10mV
 Rs in s 50
-Cc1 in e1 3.183uF
-Re1 e1 ee 21.8k
+Cc1 in e1 3.19uF
+Re1 e1 ee 19.2k
 Q1 c1 gnd e1 model1
-L1 c1 cc 4.2uH
-Cd1 c1 cc 55pF
-Rp1 c1 cc 30k
-Cc2 c1 out 3.183uF
+L1 c1 cc 3.0uH
+Cd1 c1 cc 80pF
+Rp1 c1 cc 21.7k
+Cc2 c1 out 14.7nF
 Rld out gnd 12.25k
 
 * .model <name> <type> (par1=value1 par2=value2 ...)
@@ -23,13 +23,11 @@ Rld out gnd 12.25k
 * TS = transport saturation current
 * NF = forward mode ideality factor
 
-.model model1 npn (BF=176 CJC=20pf CJE=20pf IS=1E-16 VAF=452V NF=1)
+.model model1 npn (BF=176 CJC=3.26pf CJE=5.1pf IS=1E-16 VAF=452V NF=1)
 
 .control
 set filetype=ascii
 ac dec 10 1Hz 1GHz
 plot db(v(out)/v(s))
 plot ph(v(out))-ph(v(s))
-write CBstage.txt db(v(output)/v(s)) ph(v(output))-ph(v(s))
-
-.end
+write CBstage.txt db(v(out)/v(s)) ph(v(out))-ph(v(s))

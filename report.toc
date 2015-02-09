@@ -16,8 +16,10 @@
 \contentsline {subsection}{\numberline {4.5}Common-Emitter Stage II}{13}
 \contentsline {subsection}{\numberline {4.6}Common-Emitter Stage III}{14}
 \contentsline {subsection}{\numberline {4.7}Common-Collector Stage IV}{15}
-\contentsline {section}{\numberline {5}Appendices}{16}
-\contentsline {subsection}{\numberline {5.1}HP 4342A Q Meter}{16}
-\contentsline {subsection}{\numberline {5.2}Common-Base SPICE Netlist}{21}
-\contentsline {subsection}{\numberline {5.3}MATLAB Script for $A_{v}(I_{EQ})$}{22}
-\contentsline {subsection}{\numberline {5.4}MATLAB Script for $A_{v(CE)}(f)$}{23}
+\contentsline {subsection}{\numberline {4.8}Passive Components Summary Table}{16}
+\contentsline {section}{\numberline {5}Appendices}{17}
+\contentsline {subsection}{\numberline {5.1}HP 4342A Q Meter}{17}
+\contentsline {subsection}{\numberline {5.2}Common-Base SPICE Netlist}{22}
+\contentsline {subsection}{\numberline {5.3}Common-Emitter SPICE Netlist}{23}
+\contentsline {subsection}{\numberline {5.4}MATLAB Script for $A_{v}(I_{EQ})$}{24}
+\contentsline {subsection}{\numberline {5.5}MATLAB Script for $A_{v(CE)}(f)$}{25}

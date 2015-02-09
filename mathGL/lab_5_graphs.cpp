@@ -10,17 +10,14 @@
 using namespace std;
 
 int main () {
-	csv_import import_1 ("default-parameters.csv"); // the initial SPICE simulation
-	csv_import import_2 ("updated-parameters.csv"); // the improved SPICE simulation
-	csv_import import_3 ("frequency-response-data.csv"); // the experimental data
+	csv_import import_1 ("CBstage.csv"); // the SPICE simulation
+	csv_import import_2 ("cbFrequencyResponse.csv"); // experimental data
 
 	// Create double arrays for the SPICE data
 	int spice_size = import_1.get_number_of_data_lines () -1;
 	double *spice_freq = new double[spice_size];
-	double *default_mag = new double[spice_size];
-	double *default_phase = new double[spice_size];
-	double *improved_mag = new double[spice_size];
-	double *improved_phase = new double[spice_size];
+	double *spice_mag = new double[spice_size];
+	double *spice_phase = new double[spice_size];
 
 	// Create double arrays for the experimental data
 	int experimental_size = import_3.get_number_of_data_lines () -1;
@@ -30,30 +27,26 @@ int main () {
 
 	// Import data into the double arrays
 	import_1.get_vector_data (0, spice_freq, spice_size);
-	import_1.get_vector_data (1, default_mag, spice_size);
-	import_1.get_vector_data (2, default_phase, spice_size);
-	import_2.get_vector_data (1, improved_mag, spice_size);
-	import_2.get_vector_data (2, improved_phase, spice_size);
-	import_3.get_vector_data (0, exp_freq, experimental_size);
-	import_3.get_vector_data (1, exp_mag, experimental_size);
-	import_3.get_vector_data (2, exp_phase, experimental_size);
+	import_1.get_vector_data (1, spice_mag, spice_size);
+	import_1.get_vector_data (2, spice_phase, spice_size);
+	import_3.get_vector_data (2, exp_freq, experimental_size);
+	import_3.get_vector_data (7, exp_mag, experimental_size);
+	import_3.get_vector_data (5, exp_phase, experimental_size);
 
 	// Put the data into mathGL data objects
-	mglData f1, m1, p1, m2, p2, f3, m3, p3;
+	mglData f1, m1, p1, f2, m2, p2;
 	f1.Set (spice_freq, spice_size);
-	m1.Set (default_mag, spice_size);
-	p1.Set (default_phase, spice_size);
-	m2.Set (improved_mag, spice_size);
-	p2.Set (improved_phase, spice_size);
-	f3.Set (exp_freq, experimental_size);
-	m3.Set (exp_mag, experimental_size);
-	p3.Set (exp_phase, experimental_size);
+	m1.Set (spice_mag, spice_size);
+	p1.Set (spice_phase, spice_size);
+	f2.Set (exp_freq, experimental_size);
+	m2.Set (exp_mag, experimental_size);
+	p2.Set (exp_phase, experimental_size);
 
 	// Set some graphing option values
 	const int MIN_FREQ = 10;
 	const int MAX_FREQ = 100000000;
-	const char GRAPH_FILENAME[] = "comparison_graph.eps";
-	const char PLOT_TITLE[] = "BJT Amplifier Circuit Frequency Response";
+	const char GRAPH_FILENAME[] = "cbStage.eps";
+	const char PLOT_TITLE[] = "Common-Base Stage Frequency Response";
 
 	// Generate Plots and Save as EPS vector file
 	mglGraph gr;
@@ -66,12 +59,10 @@ int main () {
 		gr.Label('x', "Frequency (Hz)", 0);
 		gr.Axis ();
 		gr.AddLegend ("Default SPICE Simulation","b2");
-		gr.AddLegend ("Improved SPICE Simulation","g2");
 		gr.AddLegend ("Experimental Data", "rs");
 		gr.Legend (0, 1);
 		gr.Plot (f1, m1, "b2");		// b for blue, 2 for thickness
-		gr.Plot (f1, m2, "g2");
-		gr.Plot (f3, m3, "rs");
+		gr.Plot (f2, m2, "rs");
 		
 	gr.SubPlot (1,2,1);
 		gr.Label('y', "Phase (radians)", 0);
@@ -82,8 +73,7 @@ int main () {
 		gr.Axis ();
 		gr.Legend(1,0.3);	// positioning
 		gr.Plot (f1, p1, "b2");
-		gr.Plot (f1, p2, "g2");
-		gr.Plot (f3, p3, "rs");
+		gr.Plot (f2, p2, "rs");
 	gr.WriteEPS (GRAPH_FILENAME);
 
 	cout << "Graphing complete. Output written to " << GRAPH_FILENAME << endl;

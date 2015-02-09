@@ -6,18 +6,18 @@ Vcc cc gnd dc 12V ac 0V
 Vee ee gnd dc -12V ac 0V
 Vs s gnd dc 0V ac 10mV
 Rs in s 50
-Cc2 in b2 13nF
-R1 cc b2 177.2k
-R2 b2 ee 96.6k
+Cc2 in b2 14.7nF
+R1 cc b2 384.7k
+R2 b2 ee 465.2k
 Q2 c2 b2 e2 model2
-Rex e2 e22 50
-Re2 e22 ee 6.25k
-Ce2 e22 gnd 25.5nF
+Rex e2 e22 46.5
+Re2 e22 ee 9.58k
+Ce2 e22 gnd 14.7nF
 L2 c2 cc 4.2uH
-Cd2 c2 cc 55pF
-Rp2 c2 cc 30k
-Cc3 c2 out 13nF
-Rld out gnd 9999k
+Cd2 c2 cc 61.66pF
+Rp2 c2 cc 40.3k
+Cc3 c2 out 14.3nF
+Rld out gnd 12.5k
 
 * .model <name> <type> (par1=value1 par2=value2 ...)
 * VAF = forward Early voltage
@@ -27,7 +27,7 @@ Rld out gnd 9999k
 * TS = transport saturation current
 * NF = forward mode ideality factor
 
-.model model2 npn (BF=192 CJC=20pf CJE=20pf IS=1E-16 VAF=228V NF=1)
+.model model2 npn (BF=192 CJC=3.28pf CJE=5.18pf IS=1E-16 VAF=228V NF=1)
 
 .control
 set filetype=ascii
@@ -35,5 +35,3 @@ ac dec 10 1Hz 1GHz
 plot db(v(out)/v(s))
 plot ph(v(out))-ph(v(s))
 write CEstage.txt db(v(out)/v(s)) ph(v(out))-ph(v(s))
-
-.end
