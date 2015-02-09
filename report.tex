@@ -1,4 +1,4 @@
-\documentclass[titlepage, letterpaper, 11pt]{article}
+\documentclass[titlepage, letterpaper, 10.5pt]{article}
 \usepackage[letterpaper, margin=1.25in]{geometry}
 \usepackage{graphicx}
 \usepackage{comment}
@@ -10,10 +10,10 @@
 \begin{document}
 
 \title{Multi-Stage Tuned Amplifier}
-\author{By: Ben Lorenzetti\\
+\author{Author: Ben Lorenzetti\\
 Team Member: Francois Nyamsi}
 \date{Project Start Date: January 22, 2015\\
-Report Submission Date: February 8, 2015}
+Report Submission Date: February 9, 2015}
 \maketitle
 
 \clearpage
@@ -996,7 +996,8 @@ Park. It features a top layer with traces corresponding to the circuit
 diagram in figure \ref{multiStageTunedAmplifier} (there are no crossing
 nets in the design), and a bottom layer with power and ground planes.
 There are vias for a coax cable connector for the input signal and
-banana plug vias for the DC supply and the output signal.
+banana plug vias for the DC supply and the output signal. The design
+for the PCB board is included in appendix \ref{eagleCad}.
 
 The super-awesome-but-sadly-difficult-to-modify amplifier is shown
 in figure \ref{assembledAmplifier}.
@@ -1006,9 +1007,10 @@ in figure \ref{assembledAmplifier}.
 	\includegraphics[width=0.6\textwidth]
 		{images/assembledAmplifier}
 	\caption{Multi-Stage Tuned Amplifier Assembly}
-	\label{assembedAmplifier}
+	\label{assembledAmplifier}
 \end{figure}
 
+\clearpage
 \section{Test Results}
 
 \subsection{Modifications Made}
@@ -1038,11 +1040,95 @@ C_{d1}=61.7\,pF\rightarrow 31\,pF
 
 \subsection{Frequency Response}
 
+After the circuit was modified to prevent self oscillation, the
+amplifier was measured for its frequency response and input impedance.
+We had difficulty measuring the output impedance. The results of the
+frequency response measurements are shown in plots
+\ref{multiStageResultsMag} and \ref{multiStageResultsPhase}.
 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]
+		{measurements/multiStageResultsMag}
+	\caption{Magnitude Gain of Multi-Stage Tuned Amplifier}
+	\label{multiStageResultsMag}
+\end{figure}
+
+\begin{figure}[ht]
+	\includegraphics[width=0.65\textwidth]
+		{measurements/multiStageResultsPhase}
+	\caption{Phase Shift of Multi-Stage Tuned Amplifier}
+	\label{multiStageResultsPhase}
+\end{figure}
+
+For comparison, the frequency response results shown in figures
+\ref{multiStageResultsMag} and \ref{multiStageResultsPhase}
+were plotted against a simulated response from SPICE. The SPICE
+netlist used to simulate the entire multi-stage circuit is included
+in appendix \ref{multiStageNetlist}.
 
 \subsection{Results Summary Table}
 
+The overall characteristics of the multi-stage amplifier are
+summarized in table \ref{resultsSummary}. Note that the square-
+bracketed numbers indicate footnotes for additional description.
+
+\begin{table}[ht]
+\centering
+\caption{Multi-Stage Tuned Amplifier Results}
+\begin{tabular}{c|c|c|c}
+\hline\hline
+Parameter	&Designed		&Simulated		&Measured	\\
+\hline\hline
+$R_{in}$		&50 $\Omega$	&50 $\Omega$	&[\tablefootnote{noise interference prevented measurement}]	\\
+$|A_{v}|$		&>60 dB			&68 dB			&36.4 dB	\\
+$\angle A_{v}$	&-			&$-\pi$			&[\tablefootnote{oops, forgot to measure this.}]	\\
+$f_{0}$			&10 MHz			&10 MHz			&11.1 MHz	\\
+$B$				&300 kHz		&[\tablefootnote{there is probably a way to make SPICE tell this...?}]	&200 kHz	\\
+$R_{o}$			&50 $\Omega$	&100 $\Omega$ [\tablefootnote{I think this was due the lack of non-polar, $\mu F$ range capacitors for $C_{C5}$.}]	
+												&134 $\Omega$	\\
+\hline\hline
+\end{tabular}
+\label{resultsSummary}
+\end{table}
+
+\clearpage
 \section{Conclusions}
+
+A cursory glance at the frequency response results in figure
+\ref{multiStageResultsMag} tells that the circuit did not function
+as designed. The magnitude gain falls short by a factor of 20, the
+center frequency is slightly off, the output resistance is too large,
+and overall the circuit was very noisy.
+
+I think that the design work that was done was correct; resistors were
+chosen intelligently based on quiescent point analysis and desired AC
+parameters, like gain and input resistance. However, the design did not
+take into account feedback from later stages--which could occur through
+power supply, the miller effect of the BJT, EMI coupling, and
+potentially other sources. These effects were not considered in the
+design, nor accounted for in SPICE (except for the Miller effect).
+Consequently, we were blindsided by oscillations and noise when
+physically constructing the circuit.
+
+In the end we had to incapacitate
+\footnote{literally incapacitate--English though.}one of our amplifier
+stages to prevent self-oscillation. This is obviously not acceptable
+for any real use of a 10 MHz amplifier. 
+
+If I were to design this circuit again, I would try to model the feedback
+using distributed resistance in the power supplies and small line
+capacitors where signals physically cross. Instead of using capacitors
+for coupling the various stages, I would use inductive coupling. Inductive
+coupling provides an advantage in this case because it produces a signal
+that is $180^{o}$ out of phase from the input; this can be routed back
+as negative feedback for each stage.
+
+The two biggest lessons I took away from this lab were: (1) the advantages
+of the 3 different BJT configurations and (2) The importance accounting
+for noise and distributed feedback when operating at high frequencies.
+Unfortunately I am not confident in my theoretical knowledge for this
+kind of accounting.
 
 \section{Appendices}
 
@@ -1150,6 +1236,94 @@ write CEstage.txt db(v(out)/v(s)) ph(v(out))-ph(v(s))
 \end{verbatim}
 
 \pagebreak
+\subsection{Multi-Stage SPICE Netlist}
+\label{multiStageNetlist}
+
+This netlist corresponds to the circuit drawn in figure 
+\ref{multiStageTunedAmplifier}.
+
+\begin{verbatim}
+*** multiStage.cir ***
+* Shared nodes:  gnd, cc (+12V), ee (-12V), s, in, out
+* Stage 1 nodes: e1, c1
+* Stage 2 nodes: b2, e2, e22, c2
+* Stage 3 nodes: b3, e3, e33, c3
+* Stage 4 nodes: b4, e4
+*
+*POWER SUPPLIES AND SOURCE
+Vcc cc gnd dc 12V ac 0V
+Vee ee gnd dc -12V ac 0V
+Vs s gnd dc 0V ac 10mV
+Rs in s 1	; vary up to ~50 to find Rin
+*
+*STAGE 1; COMMON BASE
+*Cc1 in e1 3.183uF
+Cc1 in e1 320nF
+Re1 e1 ee 21.8k
+Q1 c1 gnd e1 model1
+L1 c1 cc 3.0uH
+Cd1 c1 cc 80pF
+Rp1 c1 cc 21.7k 
+*
+*STAGE 2: COMMON EMITTER
+Cc2 c1 b2 11.4nF
+R1 cc b2 378.9k
+R2 b2 ee 425.8k
+Q2 c2 b2 e2 model2
+Rex2 e2 e22 50
+Re2 e22 ee 10.5k
+Ce2 e22 gnd 25.5nF
+L2 c2 cc 4.2uH
+*Cd2 c2 cc 61.66pF
+Cremovefixed c2 cc 31pF
+Rp2 c2 cc 40.3k
+*
+*STAGE 3: COMMON EMITTER
+Cc3 c2 b3 11.4nF
+R3 cc b3 378.9k
+R4 b3 ee 425.8k
+Q3 c3 b3 e3 model3
+Rex3 e3 e33 50
+Re3 e33 ee 10.5k
+Ce3 e33 gnd 25.5nF
+L3 c3 cc 4.4uH
+Cd3 c3 cc 64.33pF
+Rp3 c3 cc 30.4k
+*
+*STAGE 4: COMMON COLLECTOR
+Cc4 c3 b4 13nF
+R5 cc b4 833k
+R6 b4 ee 936.2k
+Q4 cc b4 e4 model4
+Re4 e4 ee 23.2k
+*
+*OUTPUT
+Cc5 e4 out 3.18uF
+Rload out gnd 100k	; vary down to ~50 to find Rout
+*
+* .model <name> <type> (par1=value1 par2=value2 ...)
+* VAF = forward Early voltage
+* BF = forward beta; forward common-emitter gain
+* CJE = base-emitter zero-bias junction capacitance
+* CJC = base-collector zero-bias junction capacitance
+* TS = transport saturation current
+* NF = forward mode ideality factor
+*
+.model model1 npn (BF=181 CJC=5.1pf CJE=3.26pf IS=1E-16 VAF=260V NF=1)
+.model model2 npn (BF=191 CJC=5.19pf CJE=3.28pf IS=1E-16 VAF=273V NF=1) ; CJC has large effect on CB gain and CC2 throughput
+.model model3 npn (BF=189 CJC=5.18pf CJE=3.30pf IS=1E-16 VAF=273V NF=1)
+.model model4 npn (BF=189 CJC=5.23pf CJE=3.24pf IS=1E-16 VAF=224V NF=1) ; model2 CJE has effect on CC2 throughput but not CB gain
+*
+*OUTPUT CONTROL
+.control
+set filetype=ascii
+ac dec 10 10kHz 1GHz
+plot db(v(out)/v(s))
+plot ph(v(out))-ph(v(s))
+write multiStage.txt db(v(out)/v(s)) ph(v(out))-ph(v())
+\end{verbatim}
+
+\pagebreak
 \subsection{MATLAB Script for $A_{v}(I_{EQ})$}
 \label{matlabScript}
 
@@ -1236,5 +1410,23 @@ ylabel('|Av| (dB)');
 title('Magnitude Gain of Tuned CE Amplifier');
 %
 \end{verbatim}
+
+\pagebreak
+\subsection{PCB Board Design}
+\label{eagleCad}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]
+		{images/multiStageEagleCircuit}
+	\caption{Eagle CAD Circuit Diagram}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]
+		{images/multiStageEagleBoard}
+	\caption{Eagle CAD Physical Board}
+\end{figure}
 
 \end{document}

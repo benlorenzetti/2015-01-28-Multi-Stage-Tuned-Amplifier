@@ -4,28 +4,30 @@
 \contentsline {subsection}{\numberline {3.1}Tank Circuits}{3}
 \contentsline {subsection}{\numberline {3.2}Common-Base Broadband Amplifier}{4}
 \contentsline {subsection}{\numberline {3.3}Common-Emitter Broadband Amplifier}{5}
-\contentsline {subsection}{\numberline {3.4}Common-Collector Broadband Amplifier}{8}
-\contentsline {subsection}{\numberline {3.5}Voltage Gain and $I_{EQ}$}{9}
-\contentsline {subsection}{\numberline {3.6}Tuning a Broadband Amplifier}{9}
-\contentsline {subsection}{\numberline {3.7}Coupling Capacitors}{10}
-\contentsline {section}{\numberline {4}Design and Simulation}{10}
-\contentsline {subsection}{\numberline {4.1}Specifications}{10}
+\contentsline {subsection}{\numberline {3.4}Common-Collector Broadband Amplifier}{7}
+\contentsline {subsection}{\numberline {3.5}Voltage Gain and $I_{EQ}$}{8}
+\contentsline {subsection}{\numberline {3.6}Tuning a Broadband Amplifier}{8}
+\contentsline {subsection}{\numberline {3.7}Coupling Capacitors}{9}
+\contentsline {section}{\numberline {4}Design and Simulation}{9}
+\contentsline {subsection}{\numberline {4.1}Specifications}{9}
 \contentsline {subsection}{\numberline {4.2}BJT Characterization}{10}
-\contentsline {subsection}{\numberline {4.3}Tank Circuit Characterization}{11}
-\contentsline {subsection}{\numberline {4.4}Common-Base Stage I}{12}
-\contentsline {subsection}{\numberline {4.5}Common-Emitter Stage II}{13}
-\contentsline {subsection}{\numberline {4.6}Common-Emitter Stage III}{14}
-\contentsline {subsection}{\numberline {4.7}Common-Collector Stage IV}{15}
-\contentsline {subsection}{\numberline {4.8}Passive Components Summary Table}{16}
-\contentsline {subsection}{\numberline {4.9}Building the Amplifier}{17}
-\contentsline {section}{\numberline {5}Test Results}{17}
-\contentsline {subsection}{\numberline {5.1}Modifications Made}{17}
-\contentsline {subsection}{\numberline {5.2}Frequency Response}{18}
-\contentsline {subsection}{\numberline {5.3}Results Summary Table}{18}
-\contentsline {section}{\numberline {6}Conclusions}{18}
-\contentsline {section}{\numberline {7}Appendices}{18}
-\contentsline {subsection}{\numberline {7.1}HP 4342A Q Meter}{18}
-\contentsline {subsection}{\numberline {7.2}Common-Base SPICE Netlist}{24}
-\contentsline {subsection}{\numberline {7.3}Common-Emitter SPICE Netlist}{25}
-\contentsline {subsection}{\numberline {7.4}MATLAB Script for $A_{v}(I_{EQ})$}{26}
-\contentsline {subsection}{\numberline {7.5}MATLAB Script for $A_{v(CE)}(f)$}{27}
+\contentsline {subsection}{\numberline {4.3}Tank Circuit Characterization}{10}
+\contentsline {subsection}{\numberline {4.4}Common-Base Stage I}{11}
+\contentsline {subsection}{\numberline {4.5}Common-Emitter Stage II}{12}
+\contentsline {subsection}{\numberline {4.6}Common-Emitter Stage III}{13}
+\contentsline {subsection}{\numberline {4.7}Common-Collector Stage IV}{14}
+\contentsline {subsection}{\numberline {4.8}Passive Components Summary Table}{15}
+\contentsline {subsection}{\numberline {4.9}Building the Amplifier}{15}
+\contentsline {section}{\numberline {5}Test Results}{19}
+\contentsline {subsection}{\numberline {5.1}Modifications Made}{19}
+\contentsline {subsection}{\numberline {5.2}Frequency Response}{19}
+\contentsline {subsection}{\numberline {5.3}Results Summary Table}{20}
+\contentsline {section}{\numberline {6}Conclusions}{21}
+\contentsline {section}{\numberline {7}Appendices}{21}
+\contentsline {subsection}{\numberline {7.1}HP 4342A Q Meter}{21}
+\contentsline {subsection}{\numberline {7.2}Common-Base SPICE Netlist}{25}
+\contentsline {subsection}{\numberline {7.3}Common-Emitter SPICE Netlist}{26}
+\contentsline {subsection}{\numberline {7.4}Multi-Stage SPICE Netlist}{27}
+\contentsline {subsection}{\numberline {7.5}MATLAB Script for $A_{v}(I_{EQ})$}{29}
+\contentsline {subsection}{\numberline {7.6}MATLAB Script for $A_{v(CE)}(f)$}{30}
+\contentsline {subsection}{\numberline {7.7}PCB Board Design}{31}

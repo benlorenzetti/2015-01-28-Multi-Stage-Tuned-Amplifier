@@ -1,5 +1,5 @@
 Title: *** multistage.cir ***
-Date: Sun Feb  8 19:28:27  2015
+Date: Mon Feb  9 14:44:41  2015
 Plotname: AC Analysis
 Flags: complex
 No. Variables: 3

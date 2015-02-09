@@ -9,7 +9,7 @@
 Vcc cc gnd dc 12V ac 0V
 Vee ee gnd dc -12V ac 0V
 Vs s gnd dc 0V ac 10mV
-Rs in s 50
+Rs in s 1
 *
 *STAGE 1; COMMON BASE
 *Cc1 in e1 3.183uF
@@ -54,7 +54,7 @@ Re4 e4 ee 23.2k
 *
 *OUTPUT
 Cc5 e4 out 3.18uF
-Rload out gnd 100k
+Rload out gnd 100
 *
 * .model <name> <type> (par1=value1 par2=value2 ...)
 * VAF = forward Early voltage
@@ -73,7 +73,7 @@ Rload out gnd 100k
 .control
 set filetype=ascii
 ac dec 10 10kHz 1GHz
-plot db(v(out)/v(in))
-plot ph(v(out))-ph(v(in))
-write multiStage.txt db(v(out)/v(in)) ph(v(out))-ph(v(in))
+plot db(v(out)/v(s))
+*plot ph(v(out))-ph(v(in))
+*write multiStage.txt db(v(out)/v(in)) ph(v(out))-ph(v(in))
 
