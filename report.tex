@@ -974,6 +974,76 @@ Stage	&Component	&Designed Value	&Measured Value	\\
 \label{passiveComponents}
 \end{table}
 
+\subsection{Building the Amplifier}
+
+The four amplifier stages designed above were cascaded together
+according the circuit shown in figure \ref{multiStageTunedAmplifier}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]
+		{figures/multiStageTunedAmplifier}
+	\caption{Circuit Layout for the Multi-Stage Amplifier}
+	\label{multiStageTunedAmplifier}
+\end{figure}
+
+Rather than assembling the components together on a breadboard; with
+noisy jumper antennae and side-by-side strip capacitance, a printed
+circuit board (PCB) was used. 
+
+The PCB was designed using CADSOFT Eagle and was manufactured by OSH
+Park. It features a top layer with traces corresponding to the circuit
+diagram in figure \ref{multiStageTunedAmplifier} (there are no crossing
+nets in the design), and a bottom layer with power and ground planes.
+There are vias for a coax cable connector for the input signal and
+banana plug vias for the DC supply and the output signal.
+
+The super-awesome-but-sadly-difficult-to-modify amplifier is shown
+in figure \ref{assembledAmplifier}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]
+		{images/assembledAmplifier}
+	\caption{Multi-Stage Tuned Amplifier Assembly}
+	\label{assembedAmplifier}
+\end{figure}
+
+\section{Test Results}
+
+\subsection{Modifications Made}
+
+Although the individual stages worked in isolation on the
+breadboard, they did not work when cascaded together on the PCB.
+When the PCB was connected to the DC supply, the ouput oscillated
+from $\pm11\,V$ at $23\,MHz$, regardless of any applied input signal.
+
+Somewhere along the line there must have been resonant feedback,
+probably through the miller capacitance between the collector and
+base junctions.
+
+We attempted to add negative feedback to solve this problem. We tried
+adding a resistive connection between the output of stage 3 and the
+input of stage 2, but to no avail. We tried winding a second wire on
+the tank coils to get inductively coupled feedback, but it was just
+flying in the dark.
+
+Finally in frustration, we removed the capacitor from stage two's
+tank impedance and the oscillations disappeared.\footnote{along
+with most of our gain} The trimming capacitor was still in place
+so the net change was decreasing $C_{d2}$ from 61.7pF to 31pF.
+\begin{equation*}
+C_{d1}=61.7\,pF\rightarrow 31\,pF
+\end{equation*}
+
+\subsection{Frequency Response}
+
+
+
+\subsection{Results Summary Table}
+
+\section{Conclusions}
+
 \section{Appendices}
 
 \subsection{HP 4342A Q Meter}
